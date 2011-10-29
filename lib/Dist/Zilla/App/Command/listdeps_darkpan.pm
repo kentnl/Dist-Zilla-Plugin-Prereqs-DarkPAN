@@ -18,10 +18,10 @@ add native support.
 
 =cut
 
-sub abstract { "list your distributions prerequisites from darkpans" }
+sub abstract { return 'list your distributions prerequisites from darkpans' }
 
 sub opt_spec {
-  [ 'missing', 'list only the missing dependencies' ],;
+  return [ 'missing', 'list only the missing dependencies' ],;
 }
 
 sub extract_dependencies {
@@ -31,27 +31,33 @@ sub extract_dependencies {
   $_->prune_files      for $zilla->plugins_with( -FilePruner )->flatten;
   $_->munge_files      for $zilla->plugins_with( -FileMunger )->flatten;
   $_->register_prereqs for $zilla->plugins_with( -PrereqSource )->flatten;
-  use Data::Dump qw(pp);
   my @dark;
   my $callback = sub {
-    shift(@_) if ref $_[0] eq 'HASH';
+    shift @_ if ref $_[0] eq 'HASH';
     push @dark, @_;
   };
 
-  $_->register_external_prereqs($callback) for $zilla->plugins_with('-PrereqSource::External')->flatten;
+  $_->register_external_prereqs($callback)
+    for $zilla->plugins_with('-PrereqSource::External')->flatten;
 
   if ($missing) {
     @dark = grep { not $_->is_satisfied } @dark;
   }
-  return sort { lc $a->url cmp lc $b->url } @dark;
+  @dark = sort { lc $a->url cmp lc $b->url } @dark;
+  return @dark;
 }
 
 sub execute {
   my ( $self, $opt, $arg ) = @_;
-  $self->app->chrome->logger->mute;
-
-  say ">";
-  say $_->url for $self->extract_dependencies( $self->zilla, $opt->missing, );
+  my $logger = $self->app->chrome->logger;
+  $logger->mute;
+  for ( $self->extract_dependencies( $self->zilla, $opt->missing, ) ) {
+    say $_->url or do {
+      $logger->unmute;
+      $logger->log_fatal('Error writing to output');
+    };
+  }
+  return 1;
 }
 1;
 

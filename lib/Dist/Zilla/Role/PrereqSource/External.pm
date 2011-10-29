@@ -14,5 +14,6 @@ use namespace::autoclean;
 
 requires 'register_external_prereqs';
 
+no Moose::Role;
 1;
 

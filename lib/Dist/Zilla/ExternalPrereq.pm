@@ -12,9 +12,14 @@ with 'Dist::Zilla::Role::Plugin';
 use Class::Load;
 use Try::Tiny;
 
-has 'name'       => ( isa => 'Str', required => 1,     is => 'rw' );
-has 'url'        => ( isa => 'Str', required => 1,     is => 'rw' );
-has 'minversion' => ( isa => 'Str', required => undef, is => 'rw', predicate => 'has_minversion' );
+has 'name' => ( isa => 'Str', required => 1, is => 'rw' );
+has 'url'  => ( isa => 'Str', required => 1, is => 'rw' );
+has 'minversion' => (
+  isa       => 'Str',
+  required  => undef,
+  is        => 'rw',
+  predicate => 'has_minversion'
+);
 
 sub is_satisfied {
   my ($self) = shift;
@@ -27,7 +32,9 @@ sub is_satisfied {
     1;
   }
   catch {
+    ## no critic (RegularExpressions)
     if ( $_ !~ /^.*version.*required.*this is only version.*$/m ) {
+      ## no critic ( RequireCarping )
       die $_;
     }
     $satisfied = undef;

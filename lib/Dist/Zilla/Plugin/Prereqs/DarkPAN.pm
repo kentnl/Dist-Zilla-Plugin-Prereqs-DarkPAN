@@ -1,4 +1,4 @@
-use 5.10.0;
+use 5.010000;
 use strict;
 use warnings;
 
@@ -50,7 +50,13 @@ and have it work.
 
 =cut
 
-has prereq_phase => ( is => 'ro', isa => 'Str', lazy => 1, init_arg => undef, default => 'runtime' );
+has prereq_phase => (
+  is       => 'ro',
+  isa      => 'Str',
+  lazy     => 1,
+  init_arg => undef,
+  default  => 'runtime',
+);
 
 # init_arg => 'phase',
 # default  => sub {
@@ -61,20 +67,31 @@ has prereq_phase => ( is => 'ro', isa => 'Str', lazy => 1, init_arg => undef, de
 #    return $phase;
 # },
 
-has prereq_type => ( is => 'ro', isa => 'Str', lazy => 1, init_arg => undef, default => 'requires' );
+has prereq_type => (
+  is       => 'ro',
+  isa      => 'Str',
+  lazy     => 1,
+  init_arg => undef,
+  default  => 'requires',
+);
 
 # For full phase control, use above commented code.
 
 has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
 
 sub _add_dep {
-  my ( $class, $logger, $stash, $key, $value ) = @_;
+  my ( $class, $stash, $args ) = @_;
   my $ds = ( $stash->{deps} //= {} );
+  my $logger = $stash->{logger};
+
+  my $key   = $args->{key};
+  my $value = $args->{value};
 
   # TODO perhaps have support for multiple URLs with either some
   # fallback strategy or round-robbin or random-source support.
   # Not a priority atm.
-  return $logger->log_fatal( [ 'tried to define source url for \'%s\' more than once.', $key ] )
+  return $logger->log_fatal(
+    [ 'tried to define source url for \'%s\' more than once.', $key ] )
     if exists $ds->{$key};
 
   return ( $ds->{$key} = $value );
@@ -82,40 +99,56 @@ sub _add_dep {
 }
 
 sub _add_attribute {
-  my ( $class, $logger, $stash, $key, $attribute, $value ) = @_;
-  my $as = ( $stash->{attributes} //= {} );
+  my ( $class, $stash, $args ) = @_;
 
-  return $logger->log_fatal( [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key ] )
-    if $attribute !~ /^(minversion)$/;
+  my $attributes = ( $stash->{attributes} //= {} );
+  my $logger = $stash->{logger};
 
-  $as->{$key} //= {};
+  my $key       = $args->{key};
+  my $attribute = $args->{attribute};
+  my $value     = $args->{value};
 
-  return $logger->log_fatal( [ 'tried to set attribute \'%s\' for %s more than once.', $attribute, $key ] )
-    if exists $as->{$key}->{$attribute};
+  my $supported_attrs = { map { $_ => 1 } qw( minversion ) };
 
-  return ( $as->{$key}->{$attribute} = $value );
+  return $logger->log_fatal(
+    [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key, ],
+  ) if not exists $supported_attrs->{$attribute};
+
+  $attributes->{$key} //= {};
+
+  return $logger->log_fatal(
+    [
+      'tried to set attribute \'%s\' for %s more than once.', $attribute,
+      $key,
+    ]
+  ) if exists $attributes->{$key}->{$attribute};
+
+  return ( $attributes->{$key}->{$attribute} = $value );
 
 }
 
 sub _collect_data {
-  my ( $class, $logger, $stash, $key, $value ) = @_;
+  my ( $class, $stash, $key, $value ) = @_;
+
+  my $logger = $stash->{logger};
 
   # Parameters
   # -phase
   # -type
   # as supported by Prereqs are not supported here ( at least, not yet )
-  return $logger->log_fatal('dash ( - ) prefixed parameters are presently not supported.')
-    if $key =~ /^-/;
+  return $logger->log_fatal(
+    'dash ( - ) prefixed parameters are presently not supported.')
+    if $key =~ /\A-/msx;
 
-  if ( $key =~ /^([^.]+)\.(.*$)/ ) {
+  if ( $key =~ /\A([^.]+)[.](.*\z)/msx ) {
 
     # Foo::Bar.minversion
     my $key_name      = "$1";
     my $key_attribute = "$2";
-    return $class->_add_attribute( $logger, $stash, $key_name, $key_attribute, $value );
+    return $class->_add_attribute( $stash, $key_name, $key_attribute, $value );
   }
 
-  return $class->_add_dep( $logger, $stash, $key, $value );
+  return $class->_add_dep( $stash, $key, $value );
 }
 
 sub BUILDARGS {
@@ -133,23 +166,27 @@ sub BUILDARGS {
   my $name  = delete $config{plugin_name};
   my $_deps = {};
 
-  my $logger = $zilla->chrome->logger->proxy( { proxy_prefix => '[' . $name . ']', } );
+  my $zilla_logger = $zilla->chrome->logger;
+  my $logger = $zilla_logger->proxy( { proxy_prefix => '[' . $name . ']', } );
 
   my $deps       = {};
   my $attributes = {};
 
   for my $key ( keys %config ) {
-    $class->_collect_data( $logger, { deps => $deps, attributes => $attributes, }, $key, $config{$key} );
+    $class->_collect_data(
+      { logger => $logger, deps => $deps, attributes => $attributes, },
+      $key, $config{$key} );
   }
-  for my $dep ( keys %$attributes ) {
+  for my $dep ( keys %{$attributes} ) {
     $logger->log_fatal(
       [
-        '[%s] Attributes specified for dependency \'%s\', which
-        is not defined', $name, $dep
+        '[%s] Attributes specified for dependency \'%s\', which is not defined',
+        $name,
+        $dep
       ]
     ) unless exists $deps->{$dep};
   }
-  for my $dep ( keys %$deps ) {
+  for my $dep ( keys %{$deps} ) {
     require Dist::Zilla::ExternalPrereq;
     my $instance = Dist::Zilla::ExternalPrereq->new(
       name        => $dep,
@@ -181,6 +218,7 @@ sub register_external_prereqs {
       $self->_deps->{$dep},
     );
   }
+  return;
 }
 
 __PACKAGE__->meta->make_immutable;
