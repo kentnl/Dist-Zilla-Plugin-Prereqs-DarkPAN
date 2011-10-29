@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-package Dist::Zilla::Plugin::DarkPAN;
+package Dist::Zilla::Plugin::Prereqs::DarkPAN;
 
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
 
@@ -13,7 +13,7 @@ From time to time, people find themselves in want to depending on something that
 isn't from CPAN, but their team/in-house crew want a painless way to depend on
 it anyway.
 
-  [DarkPAN]
+  [Prereqs::DarkPAN]
   DDG = http://some.example.org/path/to/DDG.tar.gz
   ; optional
   DDG.minversion = 0.4.0
