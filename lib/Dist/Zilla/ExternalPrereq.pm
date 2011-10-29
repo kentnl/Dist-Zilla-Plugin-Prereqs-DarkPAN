@@ -18,8 +18,16 @@ has 'minversion' => (
   isa       => 'Str',
   required  => undef,
   is        => 'rw',
-  predicate => 'has_minversion'
+  predicate => 'has_minversion',
 );
+
+=method is_satisfied
+
+  $dep->is_satisfied
+
+Reports if the dependency looks like its installed.
+
+=cut
 
 sub is_satisfied {
   my ($self) = shift;

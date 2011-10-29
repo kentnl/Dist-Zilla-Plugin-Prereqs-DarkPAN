@@ -24,7 +24,7 @@ sub opt_spec {
   return [ 'missing', 'list only the missing dependencies' ],;
 }
 
-sub extract_dependencies {
+sub _extract_dependencies {
   my ( $self, $zilla, $missing ) = @_;
   $_->before_build     for $zilla->plugins_with( -BeforeBuild )->flatten;
   $_->gather_files     for $zilla->plugins_with( -FileGatherer )->flatten;
@@ -51,7 +51,7 @@ sub execute {
   my ( $self, $opt, $arg ) = @_;
   my $logger = $self->app->chrome->logger;
   $logger->mute;
-  for ( $self->extract_dependencies( $self->zilla, $opt->missing, ) ) {
+  for ( $self->_extract_dependencies( $self->zilla, $opt->missing, ) ) {
     say $_->url or do {
       $logger->unmute;
       $logger->log_fatal('Error writing to output');

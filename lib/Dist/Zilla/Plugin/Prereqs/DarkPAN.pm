@@ -206,6 +206,12 @@ sub BUILDARGS {
 
 }
 
+=begin Pod::Coverage
+
+  register_external_prereqs
+
+=cut
+
 sub register_external_prereqs {
   my ( $self, $registersub ) = @_;
 
