@@ -2,6 +2,12 @@ use strict;
 use warnings;
 
 package Dist::Zilla::ExternalPrereq;
+BEGIN {
+  $Dist::Zilla::ExternalPrereq::AUTHORITY = 'cpan:KENTNL';
+}
+{
+  $Dist::Zilla::ExternalPrereq::VERSION = '0.1.0';
+}
 
 # FILENAME: ExternalPrereq.pm
 # CREATED: 30/10/11 10:07:40 by Kent Fredric (kentnl) <kentfredric@gmail.com>
@@ -21,13 +27,6 @@ has 'minversion' => (
   predicate => 'has_minversion',
 );
 
-=method is_satisfied
-
-  $dep->is_satisfied
-
-Reports if the dependency looks like its installed.
-
-=cut
 
 sub is_satisfied {
   my ($self) = shift;
@@ -54,4 +53,37 @@ sub is_satisfied {
 no Moose;
 __PACKAGE__->meta->make_immutable;
 1;
+
+
+__END__
+=pod
+
+=head1 NAME
+
+Dist::Zilla::ExternalPrereq - A representation of an externalised prerequisite
+
+=head1 VERSION
+
+version 0.1.0
+
+=head1 METHODS
+
+=head2 is_satisfied
+
+  $dep->is_satisfied
+
+Reports if the dependency looks like its installed.
+
+=head1 AUTHOR
+
+Kent Fredric <kentnl@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2011 by Kent Fredric <kentnl@cpan.org>.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
 

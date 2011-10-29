@@ -3,6 +3,12 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::DarkPAN;
+BEGIN {
+  $Dist::Zilla::Plugin::Prereqs::DarkPAN::AUTHORITY = 'cpan:KENTNL';
+}
+{
+  $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.1.0';
+}
 
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
 
@@ -11,44 +17,6 @@ with 'Dist::Zilla::Role::PrereqSource::External';
 
 use namespace::autoclean;
 
-=head1 SYNOPSIS
-
-From time to time, people find themselves in want to depending on something that
-isn't from CPAN, but their team/in-house crew want a painless way to depend on
-it anyway.
-
-  [Prereqs::DarkPAN]
-  DDG = http://some.example.org/path/to/DDG.tar.gz
-  ; optional
-  DDG.minversion = 0.4.0
-
-This would provide to various user commands the knowledge that DDG.tar.gz was
-wanted to provide the package DDG.
-
-Our hope is one day you can just do
-
-  # Doesn't work yet :(
-  $ cpanm $( dzil listdeps )
-
-  or
-
-  $ cpanm $( dzil listdeps --missing )
-
-and have it do the right things.
-
-In the interim, you can do
-
-    $ cpanm $( dzil listdeps )  \
-      && cpanm $( dzil listdeps_darkpan )
-
-or
-
-    $ cpanm $( dzil listdeps --missing ) \
-      && cpanm $( dzil listdeps_darkpan --missing )
-
-and have it work.
-
-=cut
 
 has prereq_phase => (
   is       => 'ro',
@@ -206,11 +174,6 @@ sub BUILDARGS {
 
 }
 
-=begin Pod::Coverage
-
-  register_external_prereqs
-
-=cut
 
 sub register_external_prereqs {
   my ( $self, $registersub ) = @_;
@@ -231,3 +194,67 @@ __PACKAGE__->meta->make_immutable;
 no Moose;
 
 1;
+
+__END__
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Plugin::Prereqs::DarkPAN - Depend on things from arbitrary places-not-CPAN
+
+=head1 VERSION
+
+version 0.1.0
+
+=head1 SYNOPSIS
+
+From time to time, people find themselves in want to depending on something that
+isn't from CPAN, but their team/in-house crew want a painless way to depend on
+it anyway.
+
+  [Prereqs::DarkPAN]
+  DDG = http://some.example.org/path/to/DDG.tar.gz
+  ; optional
+  DDG.minversion = 0.4.0
+
+This would provide to various user commands the knowledge that DDG.tar.gz was
+wanted to provide the package DDG.
+
+Our hope is one day you can just do
+
+  # Doesn't work yet :(
+  $ cpanm $( dzil listdeps )
+
+  or
+
+  $ cpanm $( dzil listdeps --missing )
+
+and have it do the right things.
+
+In the interim, you can do
+
+    $ cpanm $( dzil listdeps )  \
+      && cpanm $( dzil listdeps_darkpan )
+
+or
+
+    $ cpanm $( dzil listdeps --missing ) \
+      && cpanm $( dzil listdeps_darkpan --missing )
+
+and have it work.
+
+=for Pod::Coverage   register_external_prereqs
+
+=head1 AUTHOR
+
+Kent Fredric <kentnl@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2011 by Kent Fredric <kentnl@cpan.org>.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
