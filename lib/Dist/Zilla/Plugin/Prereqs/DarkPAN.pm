@@ -68,13 +68,13 @@ has prereq_type => ( is => 'ro', isa => 'Str', lazy => 1, init_arg => undef, def
 has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
 
 sub _add_dep {
-  my ( $class, $stash, $key, $value ) = @_;
+  my ( $class, $logger, $stash, $key, $value ) = @_;
   my $ds = ( $stash->{deps} //= {} );
 
   # TODO perhaps have support for multiple URLs with either some
   # fallback strategy or round-robbin or random-source support.
   # Not a priority atm.
-  return $class->log_fatal( [ 'tried to define source url for %s more than once.', $key ] )
+  return $logger->log_fatal( [ 'tried to define source url for \'%s\' more than once.', $key ] )
     if exists $ds->{$key};
 
   return ( $ds->{$key} = $value );
@@ -82,15 +82,15 @@ sub _add_dep {
 }
 
 sub _add_attribute {
-  my ( $class, $stash, $key, $attribute, $value ) = @_;
+  my ( $class, $logger, $stash, $key, $attribute, $value ) = @_;
   my $as = ( $stash->{attributes} //= {} );
 
-  return $class->log_fatal( [ 'Attribute %s not supported.', $attribute ] )
+  return $logger->log_fatal( [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key ] )
     if $attribute !~ /^(minversion)$/;
 
   $as->{$key} //= {};
 
-  return $class->log_fatal( [ 'tried to set attribute %s for %s more than once.', $attribute, $key ] )
+  return $logger->log_fatal( [ 'tried to set attribute \'%s\' for %s more than once.', $attribute, $key ] )
     if exists $as->{$key}->{$attribute};
 
   return ( $as->{$key}->{$attribute} = $value );
@@ -98,13 +98,13 @@ sub _add_attribute {
 }
 
 sub _collect_data {
-  my ( $class, $stash, $key, $value ) = @_;
+  my ( $class, $logger, $stash, $key, $value ) = @_;
 
   # Parameters
   # -phase
   # -type
   # as supported by Prereqs are not supported here ( at least, not yet )
-  return $class->log_fatal('dash ( - ) prefixed parameters are presently not supported.')
+  return $logger->log_fatal('dash ( - ) prefixed parameters are presently not supported.')
     if $key =~ /^-/;
 
   if ( $key =~ /^([^.]+)\.(.*$)/ ) {
@@ -112,10 +112,10 @@ sub _collect_data {
     # Foo::Bar.minversion
     my $key_name      = "$1";
     my $key_attribute = "$2";
-    return $class->_add_attribute( $stash, $key_name, $key_attribute, $value );
+    return $class->_add_attribute( $logger, $stash, $key_name, $key_attribute, $value );
   }
 
-  return $class->_add_dep( $stash, $key, $value );
+  return $class->_add_dep( $logger, $stash, $key, $value );
 }
 
 sub BUILDARGS {
@@ -133,40 +133,52 @@ sub BUILDARGS {
   my $name  = delete $config{plugin_name};
   my $_deps = {};
 
+  my $logger = $zilla->chrome->logger->proxy( { proxy_prefix => '[' . $name . ']', } );
+
   my $deps       = {};
   my $attributes = {};
 
   for my $key ( keys %config ) {
-    $class->_collect_data( { deps => $deps, attributes => $attributes, }, $key, $config{$key} );
+    $class->_collect_data( $logger, { deps => $deps, attributes => $attributes, }, $key, $config{$key} );
   }
   for my $dep ( keys %$attributes ) {
-    $class->log_fatal( [ 'Attributes specified for dependency %s, which is not defined', $dep ] )
-      unless exists $deps->{$dep};
+    $logger->log_fatal(
+      [
+        '[%s] Attributes specified for dependency \'%s\', which
+        is not defined', $name, $dep
+      ]
+    ) unless exists $deps->{$dep};
   }
   for my $dep ( keys %$deps ) {
+    require Dist::Zilla::ExternalPrereq;
     my $instance = Dist::Zilla::ExternalPrereq->new(
       name        => $dep,
-      plugin_name => $name . '{ExternalPrereq: dep on=' . $dep . '}',
+      plugin_name => $name . '{ExternalPrereq: dep on=\'' . $dep . '\'}',
       zilla       => $zilla,
       url         => $deps->{$dep},
       %{ $attributes->{$dep} // {} }
     );
     $_deps->{$dep} = $instance;
   }
-  return { zilla => $zilla, plugin_name => $name, _deps => $_deps };
+  return {
+    zilla       => $zilla,
+    plugin_name => $name,
+    _deps       => $_deps,
+    logger      => $logger
+  };
 
 }
 
 sub register_external_prereqs {
   my ( $self, $registersub ) = @_;
 
-  for my $dep ( @{ $self->_deps } ) {
+  for my $dep ( keys %{ $self->_deps } ) {
     $registersub->(
       {
         type  => $self->prereq_type,
         phase => $self->prereq_phase
       },
-      $dep,
+      $self->_deps->{$dep},
     );
   }
 }

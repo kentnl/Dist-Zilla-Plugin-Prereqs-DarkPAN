@@ -10,6 +10,7 @@ package Dist::Zilla::ExternalPrereq;
 use Moose;
 with 'Dist::Zilla::Role::Plugin';
 use Class::Load;
+use Try::Tiny;
 
 has 'name'       => ( isa => 'Str', required => 1,     is => 'rw' );
 has 'url'        => ( isa => 'Str', required => 1,     is => 'rw' );
@@ -18,9 +19,21 @@ has 'minversion' => ( isa => 'Str', required => undef, is => 'rw', predicate => 
 sub is_satisfied {
   my ($self) = shift;
   my $opts = {};
-  $opts->{-version} = $self->minversion if $self->has_minversion;
-
-  return Class::Load::load_optional_class( $self->name, $opts );
+  return   unless Class::Load::load_optional_class( $self->name, );
+  return 1 unless $self->has_minversion;
+  my $satisfied = 1;
+  try {
+    $self->name->VERSION( $self->minversion );
+    1;
+  }
+  catch {
+    if ( $_ !~ /^.*version.*required.*this is only version.*$/m ) {
+      die $_;
+    }
+    $satisfied = undef;
+  };
+  return 1 if $satisfied;
+  return;
 }
 
 no Moose;
