@@ -11,6 +11,7 @@ lib/Dist/Zilla/App/Command/listdeps_darkpan.pm
 lib/Dist/Zilla/ExternalPrereq.pm
 lib/Dist/Zilla/Plugin/Prereqs/DarkPAN.pm
 lib/Dist/Zilla/Role/PrereqSource/External.pm
+lib/Dist/Zilla/Role/xPANResolver.pm
 perlcritic.rc
 t/00-compile.t
 t/000-report-versions-tiny.t

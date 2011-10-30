@@ -48,6 +48,7 @@ sub pmver {
     return sprintf('%-45s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
 }
 
+eval { $v .= pmver('App::Cache','any version') };
 eval { $v .= pmver('Class::Load','any version') };
 eval { $v .= pmver('Dist::Zilla::App','any version') };
 eval { $v .= pmver('Dist::Zilla::PluginBundle::Author::KENTNL','1.0.0') };
@@ -59,8 +60,10 @@ eval { $v .= pmver('Module::Build','0.3601') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Moose::Autobox','any version') };
 eval { $v .= pmver('Moose::Role','any version') };
+eval { $v .= pmver('Parse::CPAN::Packages','any version') };
 eval { $v .= pmver('Test::More','0.88') };
 eval { $v .= pmver('Try::Tiny','any version') };
+eval { $v .= pmver('URI','any version') };
 eval { $v .= pmver('namespace::autoclean','any version') };
 eval { $v .= pmver('strict','any version') };
 eval { $v .= pmver('warnings','any version') };

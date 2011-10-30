@@ -7,7 +7,7 @@ BEGIN {
   $Dist::Zilla::App::Command::listdeps_darkpan::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.1.0';
+  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.0';
 }
 
 # FILENAME: listdeps_darkpan.pm
@@ -52,7 +52,7 @@ sub execute {
   my $logger = $self->app->chrome->logger;
   $logger->mute;
   for ( $self->_extract_dependencies( $self->zilla, $opt->missing, ) ) {
-    say $_->url or do {
+    say $_->uri or do {
       $logger->unmute;
       $logger->log_fatal('Error writing to output');
     };
@@ -65,13 +65,15 @@ sub execute {
 __END__
 =pod
 
+=encoding utf-8
+
 =head1 NAME
 
 Dist::Zilla::App::Command::listdeps_darkpan - List DarkPAN dependencies
 
 =head1 VERSION
 
-version 0.1.0
+version 0.2.0
 
 =head1 SYNOPSIS
 

@@ -7,7 +7,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Prereqs::DarkPAN::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.1.0';
+  $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.0';
 }
 
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
@@ -59,7 +59,7 @@ sub _add_dep {
   # fallback strategy or round-robbin or random-source support.
   # Not a priority atm.
   return $logger->log_fatal(
-    [ 'tried to define source url for \'%s\' more than once.', $key ] )
+    [ 'tried to define base uri for \'%s\' more than once.', $key ] )
     if exists $ds->{$key};
 
   return ( $ds->{$key} = $value );
@@ -76,7 +76,7 @@ sub _add_attribute {
   my $attribute = $args->{attribute};
   my $value     = $args->{value};
 
-  my $supported_attrs = { map { $_ => 1 } qw( minversion ) };
+  my $supported_attrs = { map { $_ => 1 } qw( minversion uri ) };
 
   return $logger->log_fatal(
     [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key, ],
@@ -113,10 +113,17 @@ sub _collect_data {
     # Foo::Bar.minversion
     my $key_name      = "$1";
     my $key_attribute = "$2";
-    return $class->_add_attribute( $stash, $key_name, $key_attribute, $value );
+    return $class->_add_attribute(
+      $stash,
+      {
+        key       => $key_name,
+        attribute => $key_attribute,
+        value     => $value
+      }
+    );
   }
 
-  return $class->_add_dep( $stash, $key, $value );
+  return $class->_add_dep( $stash, { key => $key, value => $value } );
 }
 
 sub BUILDARGS {
@@ -160,7 +167,7 @@ sub BUILDARGS {
       name        => $dep,
       plugin_name => $name . '{ExternalPrereq: dep on=\'' . $dep . '\'}',
       zilla       => $zilla,
-      url         => $deps->{$dep},
+      baseurl     => $deps->{$dep},
       %{ $attributes->{$dep} // {} }
     );
     $_deps->{$dep} = $instance;
@@ -198,13 +205,15 @@ no Moose;
 __END__
 =pod
 
+=encoding utf-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::Prereqs::DarkPAN - Depend on things from arbitrary places-not-CPAN
 
 =head1 VERSION
 
-version 0.1.0
+version 0.2.0
 
 =head1 SYNOPSIS
 
@@ -213,9 +222,12 @@ isn't from CPAN, but their team/in-house crew want a painless way to depend on
 it anyway.
 
   [Prereqs::DarkPAN]
-  DDG = http://some.example.org/path/to/DDG.tar.gz
+  DDG = http://adarkpan.example.org/  ; DarkPAN Base URI
   ; optional
   DDG.minversion = 0.4.0
+  ; optional
+  ; But likely to be substantially faster.
+  DDG.uri = /path/to/foo/bar.tar.gz
 
 This would provide to various user commands the knowledge that DDG.tar.gz was
 wanted to provide the package DDG.
@@ -226,7 +238,7 @@ Our hope is one day you can just do
   $ cpanm $( dzil listdeps )
 
   or
-
+  # Doesn't work yet :(
   $ cpanm $( dzil listdeps --missing )
 
 and have it do the right things.
@@ -242,6 +254,53 @@ or
       && cpanm $( dzil listdeps_darkpan --missing )
 
 and have it work.
+
+=head1 DarkPAN Configurations.
+
+=head2 A Simple HTTP Server
+
+The easiest DarkPAN-ish thing that this module supports is naïve HTTP Servers,
+by simply setting the server and path to the resource.
+
+  [Prereqs::DarkPAN]
+  Foo = http://my.server/
+  Foo.uri =  files/foo.tar.gz
+
+You can specify an optional minimum version parameter C<minversion> as a client-side check to
+make sure they haven't installed an older version of Foo. 
+
+This C<uri> will be reported to listdeps_darkpan with minimal modification, only
+expanding relative paths to absolute ones so tools like C<cpanm> can use them.
+
+=head2 A MicroCPAN Configuration
+
+There is a newly formed system for creating "proper" cpans which only contain a
+handful of modules. For these services you can simply do
+
+  [Prereqs::DarkPAN]
+  Foo = http://my.server/
+
+And we'll fire up all sorts of magic to get the C<02packages.details.tar.gz>
+file, shred it, and try installing 'Foo' from there.
+
+=head2 Heavier CPAN configurations
+
+The 3rd use case is when you have somewhat heavy-weight private CPANs where you
+don't want to be encumbered by the weight of downloading and parsing
+C<02packages.details.tar.gz>. If you have a full cpan clone with a few modules
+stuffed into it, and you only want those stuffed modules while using normal CPAN
+( because the cloned versions from cpan are now old ), its possibly better to
+use the original notation
+
+  [Prereqs::DarkPAN]
+  Foo = http://my.server/
+  Foo.uri = path/too/foo.tar.gz
+
+As it will only fetch the file specified instead of relying on
+C<02packages.details.tar.gz>
+
+Granted, this latter approach will bind again to downloading a specific version
+of the prerequisite, but this is still here for you if you need it.
 
 =for Pod::Coverage   register_external_prereqs
 

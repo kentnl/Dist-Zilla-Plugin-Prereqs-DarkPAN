@@ -1,5 +1,22 @@
 Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
+0.2.0 2011-10-30T02:30:33Z
+ [API Incompatibile Changes]
+ - now takes PKG = MIRROR notation, and package path is attempted to be
+   discovered automatically using a 02packages file.
+ - the old behaviour can be attained by specifying PKG.uri = with either an
+   absolute uri, or a relative uri.
+
+ [Dependencies]
+ - new: runtime requires App::Cache
+ - new: runtime requires Parse::CPAN::Packages
+ - new: runtime requires URI
+
+ [Packages]
+ - new: Dist::Zilla::Role::xPANResolver which handles
+   fetching/caching/parsing the appropriate 02packages file and providing a
+   qualified resource for a given module.
+
 0.1.0 2011-10-29T23:27:02Z
  - First version.
 

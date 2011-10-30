@@ -37,13 +37,16 @@
       },
       "runtime" : {
          "requires" : {
+            "App::Cache" : 0,
             "Class::Load" : 0,
             "Dist::Zilla::App" : 0,
             "Dist::Zilla::Role::Plugin" : 0,
             "Moose" : 0,
             "Moose::Autobox" : 0,
             "Moose::Role" : 0,
+            "Parse::CPAN::Packages" : 0,
             "Try::Tiny" : 0,
+            "URI" : 0,
             "namespace::autoclean" : 0,
             "perl" : "v5.10.0",
             "strict" : 0,
@@ -61,19 +64,23 @@
    "provides" : {
       "Dist::Zilla::App::Command::listdeps_darkpan" : {
          "file" : "lib/Dist/Zilla/App/Command/listdeps_darkpan.pm",
-         "version" : "v0.1.0"
+         "version" : "v0.2.0"
       },
       "Dist::Zilla::ExternalPrereq" : {
          "file" : "lib/Dist/Zilla/ExternalPrereq.pm",
-         "version" : "v0.1.0"
+         "version" : "v0.2.0"
       },
       "Dist::Zilla::Plugin::Prereqs::DarkPAN" : {
          "file" : "lib/Dist/Zilla/Plugin/Prereqs/DarkPAN.pm",
-         "version" : "v0.1.0"
+         "version" : "v0.2.0"
       },
       "Dist::Zilla::Role::PrereqSource::External" : {
          "file" : "lib/Dist/Zilla/Role/PrereqSource/External.pm",
-         "version" : "v0.1.0"
+         "version" : "v0.2.0"
+      },
+      "Dist::Zilla::Role::xPANResolver" : {
+         "file" : "lib/Dist/Zilla/Role/xPANResolver.pm",
+         "version" : "v0.2.0"
       }
    },
    "release_status" : "stable",
@@ -85,9 +92,10 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-DarkPAN"
       }
    },
-   "version" : "0.1.0",
+   "version" : "0.2.0",
    "x_BuiltWith" : {
       "modules" : {
+         "App::Cache" : "0.37",
          "Class::Load" : "0.11",
          "Dist::Zilla::App" : "4.300002",
          "Dist::Zilla::PluginBundle::Author::KENTNL" : "1.0.22",
@@ -99,8 +107,10 @@
          "Moose" : "2.0205",
          "Moose::Autobox" : "0.11",
          "Moose::Role" : "2.0205",
+         "Parse::CPAN::Packages" : "2.35",
          "Test::More" : "0.98",
          "Try::Tiny" : "0.11",
+         "URI" : "1.59",
          "namespace::autoclean" : "0.13",
          "perl" : "NA(skipped: perl)",
          "strict" : "1.04",

@@ -3,7 +3,7 @@ NAME
     places-not-CPAN
 
 VERSION
-    version 0.1.0
+    version 0.2.0
 
 SYNOPSIS
     From time to time, people find themselves in want to depending on
@@ -11,9 +11,12 @@ SYNOPSIS
     painless way to depend on it anyway.
 
       [Prereqs::DarkPAN]
-      DDG = http://some.example.org/path/to/DDG.tar.gz
+      DDG = http://adarkpan.example.org/  ; DarkPAN Base URI
       ; optional
       DDG.minversion = 0.4.0
+      ; optional
+      ; But likely to be substantially faster.
+      DDG.uri = /path/to/foo/bar.tar.gz
 
     This would provide to various user commands the knowledge that
     DDG.tar.gz was wanted to provide the package DDG.
@@ -24,7 +27,7 @@ SYNOPSIS
       $ cpanm $( dzil listdeps )
 
       or
-
+      # Doesn't work yet :(
       $ cpanm $( dzil listdeps --missing )
 
     and have it do the right things.
@@ -40,6 +43,53 @@ SYNOPSIS
           && cpanm $( dzil listdeps_darkpan --missing )
 
     and have it work.
+
+DarkPAN Configurations.
+  A Simple HTTP Server
+    The easiest DarkPAN-ish thing that this module supports is naïve HTTP
+    Servers, by simply setting the server and path to the resource.
+
+      [Prereqs::DarkPAN]
+      Foo = http://my.server/
+      Foo.uri =  files/foo.tar.gz
+
+    You can specify an optional minimum version parameter "minversion" as a
+    client-side check to make sure they haven't installed an older version
+    of Foo.
+
+    This "uri" will be reported to listdeps_darkpan with minimal
+    modification, only expanding relative paths to absolute ones so tools
+    like "cpanm" can use them.
+
+  A MicroCPAN Configuration
+    There is a newly formed system for creating "proper" cpans which only
+    contain a handful of modules. For these services you can simply do
+
+      [Prereqs::DarkPAN]
+      Foo = http://my.server/
+
+    And we'll fire up all sorts of magic to get the
+    "02packages.details.tar.gz" file, shred it, and try installing 'Foo'
+    from there.
+
+  Heavier CPAN configurations
+    The 3rd use case is when you have somewhat heavy-weight private CPANs
+    where you don't want to be encumbered by the weight of downloading and
+    parsing "02packages.details.tar.gz". If you have a full cpan clone with
+    a few modules stuffed into it, and you only want those stuffed modules
+    while using normal CPAN ( because the cloned versions from cpan are now
+    old ), its possibly better to use the original notation
+
+      [Prereqs::DarkPAN]
+      Foo = http://my.server/
+      Foo.uri = path/too/foo.tar.gz
+
+    As it will only fetch the file specified instead of relying on
+    "02packages.details.tar.gz"
+
+    Granted, this latter approach will bind again to downloading a specific
+    version of the prerequisite, but this is still here for you if you need
+    it.
 
 AUTHOR
     Kent Fredric <kentnl@cpan.org>
