@@ -51,6 +51,25 @@ sub _resolver_for {
   return $self->_parse_for($absurl);
 }
 
+=method resolve_module
+
+  with 'Dist::Zilla::Role::xPANResolver';
+
+  sub foo {
+    my $self = @_;
+    my $uri = $self->resolve_module(
+      'http://some.darkpan.org', 'FizzBuzz::Bazz'
+    );
+  }
+
+This should resolve the Module to the applicable package, and return the most
+recent distribution.
+
+It should then return a fully qualifed path to that resource suitable for
+passing to C<wget> or C<cpanm>.
+
+=cut
+
 sub resolve_module {
   my ( $self, $baseurl, $module ) = @_;
   my $p = $self->_resolver_for($baseurl)->package($module);
