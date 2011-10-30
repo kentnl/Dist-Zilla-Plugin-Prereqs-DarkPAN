@@ -65,7 +65,7 @@ sub _resolver_for {
 This should resolve the Module to the applicable package, and return the most
 recent distribution.
 
-It should then return a fully qualifed path to that resource suitable for
+It should then return a fully qualified path to that resource suitable for
 passing to C<wget> or C<cpanm>.
 
 =cut
