@@ -13,6 +13,7 @@ use Moose::Role;
 sub _cache {
   state $c = do {
     require App::Cache;
+    ## no critic (ProhibitMagicNumbers)
     App::Cache->new(
       {
         ttl         => 30 * 60,
@@ -20,7 +21,7 @@ sub _cache {
       }
     );
   };
-  $c;
+  return $c;
 }
 
 sub _content_for {
