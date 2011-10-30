@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
 {{$NEXT}}
+
+0.2.0 2011-10-30T02:30:33Z
  [API Incompatibile Changes]
  - now takes PKG = MIRROR notation, and package path is attempted to be
    discovered automatically using a 02packages file.
