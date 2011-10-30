@@ -52,7 +52,7 @@ sub execute {
   my $logger = $self->app->chrome->logger;
   $logger->mute;
   for ( $self->_extract_dependencies( $self->zilla, $opt->missing, ) ) {
-    say $_->url or do {
+    say $_->uri or do {
       $logger->unmute;
       $logger->log_fatal('Error writing to output');
     };

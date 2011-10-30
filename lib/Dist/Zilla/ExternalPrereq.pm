@@ -8,12 +8,15 @@ package Dist::Zilla::ExternalPrereq;
 # ABSTRACT: A representation of an externalised prerequisite
 
 use Moose;
-with 'Dist::Zilla::Role::Plugin';
+with 'Dist::Zilla::Role::Plugin', 'Dist::Zilla::Role::xPANResolver';
 use Class::Load;
 use Try::Tiny;
 
-has 'name' => ( isa => 'Str', required => 1, is => 'rw' );
-has 'url'  => ( isa => 'Str', required => 1, is => 'rw' );
+has 'name'     => ( isa => 'Str', required => 1, is => 'rw' );
+has 'baseurl'  => ( isa => 'Str', required => 1, is => 'rw' );
+has '_uri'     => ( isa => 'Str', required => 0, is => 'rw' , predicate => '_has_uri' , init_arg => 'uri' );
+has 'uri'      => ( isa => 'Str', required => 1, is => 'rw' , lazy_build => 1 , init_arg => undef );
+
 has 'minversion' => (
   isa       => 'Str',
   required  => undef,
@@ -51,6 +54,18 @@ sub is_satisfied {
   return;
 }
 
+sub _build_uri {
+  my ( $self ) = @_ ; 
+  if ( $self->_has_uri ){ 
+    require URI;
+    my $baseuri = URI->new( $self->baseurl  );
+    return URI->new( $self->_uri )->abs( $baseuri )->as_string;
+  }
+  return $self->resolve_module(
+    $self->baseurl, $self->name 
+  );
+
+}
 no Moose;
 __PACKAGE__->meta->make_immutable;
 1;

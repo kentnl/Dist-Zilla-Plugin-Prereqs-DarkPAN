@@ -143,7 +143,7 @@ sub _add_dep {
   # fallback strategy or round-robbin or random-source support.
   # Not a priority atm.
   return $logger->log_fatal(
-    [ 'tried to define source url for \'%s\' more than once.', $key ] )
+    [ 'tried to define base uri for \'%s\' more than once.', $key ] )
     if exists $ds->{$key};
 
   return ( $ds->{$key} = $value );
@@ -197,10 +197,11 @@ sub _collect_data {
     # Foo::Bar.minversion
     my $key_name      = "$1";
     my $key_attribute = "$2";
-    return $class->_add_attribute( $stash, $key_name, $key_attribute, $value );
+    return $class->_add_attribute( $stash, { key => $key_name, attribute =>
+        $key_attribute, value => $value } );
   }
 
-  return $class->_add_dep( $stash, $key, $value );
+  return $class->_add_dep( $stash, { key =>  $key, value => $value });
 }
 
 sub BUILDARGS {
@@ -244,7 +245,7 @@ sub BUILDARGS {
       name        => $dep,
       plugin_name => $name . '{ExternalPrereq: dep on=\'' . $dep . '\'}',
       zilla       => $zilla,
-      url         => $deps->{$dep},
+      baseurl         => $deps->{$dep},
       %{ $attributes->{$dep} // {} }
     );
     $_deps->{$dep} = $instance;
