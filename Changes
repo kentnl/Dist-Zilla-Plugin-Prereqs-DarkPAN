@@ -1,6 +1,11 @@
 Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
 {{$NEXT}}
+ [API Incompatibile Changes]
+ - now takes PKG = MIRROR notation, and package path is attempted to be
+   discovered automatically using a 02packages file.
+ - the old behaviour can be attained by specifying PKG.uri = with either an
+   absolute uri, or a relative uri.
 
 0.1.0 2011-10-29T23:27:02Z
  - First version.
