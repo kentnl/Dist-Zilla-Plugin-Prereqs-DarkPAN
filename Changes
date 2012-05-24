@@ -1,6 +1,8 @@
 ﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
 {{$NEXT}}
+
+0.2.1 2012-05-24T11:21:00Z
  [Bugfixes]
  - github: closes #1 , loading Cached Package DB's fails due to not loading
    the class. Thanks to Tomohiro Hosaka/BOKUTIN for reporting.
