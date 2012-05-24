@@ -1,0 +1,27 @@
+do{ my $x = {
+       'build_requires' => {
+                             'Test::More' => '0.88',
+                             'File::Find' => 0,
+                             'File::Temp' => 0,
+                             'Module::Build' => '0.3601'
+                           },
+       'conflicts' => {},
+       'requires' => {
+                       'warnings' => 0,
+                       'Try::Tiny' => 0,
+                       'Parse::CPAN::Packages' => 0,
+                       'Moose::Role' => 0,
+                       'namespace::autoclean' => 0,
+                       'URI' => 0,
+                       'Dist::Zilla::App' => 0,
+                       'Class::Load' => 0,
+                       'App::Cache' => 0,
+                       'Moose::Autobox' => 0,
+                       'Dist::Zilla::Role::Plugin' => 0,
+                       'strict' => 0,
+                       'perl' => 'v5.10.0',
+                       'Moose' => 0
+                     },
+       'recommends' => {}
+     };
+$x; }

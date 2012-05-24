@@ -1,4 +1,17 @@
-Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
+﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
+
+0.2.1 2012-05-24T11:21:00Z
+ [Bugfixes]
+ - github: closes #1 , loading Cached Package DB's fails due to not loading
+   the class. Thanks to Tomohiro Hosaka/BOKUTIN for reporting.
+
+ [Dependencies::Changed::Develop]
+ - recommends: Dist::Zilla::PluginBundle::Author::KENTNL::Lite
+   0.01009803 -> v1.3.0
+ - suggests: Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 -> v1.3.0
+
+ [Tests::New]
+ - release/minimum-version
 
 0.2.0 2011-10-30T02:30:33Z
  [API Incompatibile Changes]

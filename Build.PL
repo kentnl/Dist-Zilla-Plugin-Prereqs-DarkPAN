@@ -20,7 +20,7 @@ my %module_build_args = (
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Prereqs-DarkPAN",
-  "dist_version" => "0.2.0",
+  "dist_version" => "0.2.1",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Plugin::Prereqs::DarkPAN",
   "recommends" => {},
@@ -37,7 +37,7 @@ my %module_build_args = (
     "Try::Tiny" => 0,
     "URI" => 0,
     "namespace::autoclean" => 0,
-    "perl" => "5.10.0",
+    "perl" => "v5.10.0",
     "strict" => 0,
     "warnings" => 0
   },

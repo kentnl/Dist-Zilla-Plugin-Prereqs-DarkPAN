@@ -4,7 +4,7 @@
       "Kent Fredric <kentnl@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300016, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Module::Build version 0.4, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -16,23 +16,15 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Module::Build" : "0.3601"
+            "File::Find" : "0",
+            "File::Temp" : "0",
+            "Module::Build" : "0.3601",
+            "Test::More" : "0.88"
          }
       },
       "configure" : {
          "requires" : {
             "Module::Build" : "0.3601"
-         }
-      },
-      "develop" : {
-         "recommends" : {
-            "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "v1.3.0"
-         },
-         "requires" : {
-            "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "0"
-         },
-         "suggests" : {
-            "Dist::Zilla::PluginBundle::Author::KENTNL" : "v1.3.0"
          }
       },
       "runtime" : {
@@ -51,13 +43,6 @@
             "perl" : "v5.10.0",
             "strict" : "0",
             "warnings" : "0"
-         }
-      },
-      "test" : {
-         "requires" : {
-            "File::Find" : "0",
-            "File::Temp" : "0",
-            "Test::More" : "0.88"
          }
       }
    },
@@ -87,9 +72,7 @@
    "resources" : {
       "homepage" : "https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-DarkPAN",
       "repository" : {
-         "type" : "git",
-         "url" : "https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-DarkPAN.git",
-         "web" : "https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-DarkPAN"
+         "url" : "https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-DarkPAN.git"
       }
    },
    "version" : "0.2.1",
@@ -118,11 +101,11 @@
       },
       "perl" : {
          "original" : "v5.16.0",
-         "qv" : 1,
+         "qv" : "1",
          "version" : [
-            5,
-            16,
-            0
+            "5",
+            "16",
+            "0"
          ]
       },
       "perl-config" : {
@@ -437,4 +420,3 @@
    },
    "x_authority" : "cpan:KENTNL"
 }
-
