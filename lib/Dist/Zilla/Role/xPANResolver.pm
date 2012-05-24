@@ -32,10 +32,10 @@ sub _content_for {
 sub _parse_for {
   my ( $self, $url ) = @_;
   my $cache_url = $url . '#parsed';
+  require Parse::CPAN::Packages;
   return _cache->get_code(
     $cache_url,
     sub {
-      require Parse::CPAN::Packages;
       my $content = $self->_content_for($url);
       return Parse::CPAN::Packages->new($content);
     }
