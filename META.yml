@@ -156,7 +156,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ReportVersions::Tiny
       name: '@Author::KENTNL/ReportVersions::Tiny'
-      version: 1.04
+      version: 1.05
     -
       class: Dist::Zilla::Plugin::Test::Kwalitee
       name: '@Author::KENTNL/Test::Kwalitee'
