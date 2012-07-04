@@ -53,7 +53,7 @@ resources:
 version: 0.2.2
 x_BuiltWith:
   modules:
-    App::Cache: 'NA(possibly not installed)'
+    App::Cache: 0.37
     Class::Load: 0.19
     Dist::Zilla::App: 4.300020
     Dist::Zilla::PluginBundle::Author::KENTNL: 1.4.1
@@ -65,7 +65,7 @@ x_BuiltWith:
     Moose: 2.0603
     Moose::Autobox: 0.12
     Moose::Role: 2.0603
-    Parse::CPAN::Packages: 'NA(possibly not installed)'
+    Parse::CPAN::Packages: 2.35
     Test::More: 0.98
     Try::Tiny: 0.11
     URI: 1.60
