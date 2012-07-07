@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Role::PrereqSource::External::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Role::PrereqSource::External::VERSION = '0.2.1';
+  $Dist::Zilla::Role::PrereqSource::External::VERSION = '0.2.2';
 }
 
 # FILENAME: External.pm
@@ -35,7 +35,7 @@ Dist::Zilla::Role::PrereqSource::External - A plugin that depends on DarkPAN/Ext
 
 =head1 VERSION
 
-version 0.2.1
+version 0.2.2
 
 =head1 AUTHOR
 

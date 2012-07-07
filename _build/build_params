@@ -17,7 +17,7 @@ do{ my $x = [
          'recommends' => {},
          'pod_files' => undef,
          'config_dir' => '_build',
-         'dist_version' => '0.2.1',
+         'dist_version' => '0.2.2',
          'sign' => undef,
          'recurse_into' => [],
          'build_bat' => 0,
@@ -29,12 +29,12 @@ do{ my $x = [
                                     'conflicts',
                                     'recommends'
                                   ],
-         'base_dir' => '/home/kent/perl/Dist-Zilla-Plugin-Prereqs-DarkPAN/Dist-Zilla-Plugin-Prereqs-DarkPAN-0.2.1',
+         'base_dir' => '/home/kent/perl/Dist-Zilla-Plugin-Prereqs-DarkPAN/Dist-Zilla-Plugin-Prereqs-DarkPAN-0.2.2',
          'allow_mb_mismatch' => 0,
          'xs_files' => undef,
          'destdir' => undef,
          'metafile' => 'META.yml',
-         'mb_version' => '0.4',
+         'mb_version' => '0.4001',
          'use_tap_harness' => 0,
          'test_file_exts' => [
                                '.t'
@@ -48,14 +48,14 @@ do{ my $x = [
                             'blib/lib',
                             'blib/arch'
                           ],
-         'perl' => '/home/kent/perl5/perlbrew/perls/perl-5.15.0-rc2/bin/perl',
+         'perl' => '/home/kent/perl5/perlbrew/perls/perl-5.16.0/bin/perl',
          'dist_author' => [
                             'Kent Fredric <kentnl@cpan.org>'
                           ],
          'bundle_inc' => [],
          'use_rcfile' => 1,
          'configure_requires' => {
-                                   'Module::Build' => '0.3601'
+                                   'Module::Build' => '0.4001'
                                  },
          'test_files' => undef,
          'dist_abstract' => 'Depend on things from arbitrary places-not-CPAN',
@@ -85,7 +85,7 @@ do{ my $x = [
                              ],
          'release_status' => 'stable',
          'needs_compiler' => '',
-         'orig_dir' => '/home/kent/perl/Dist-Zilla-Plugin-Prereqs-DarkPAN/Dist-Zilla-Plugin-Prereqs-DarkPAN-0.2.1',
+         'orig_dir' => '/home/kent/perl/Dist-Zilla-Plugin-Prereqs-DarkPAN/Dist-Zilla-Plugin-Prereqs-DarkPAN-0.2.2',
          'include_dirs' => [],
          'installdirs' => 'site',
          'mymetafile' => 'MYMETA.yml',
@@ -125,10 +125,10 @@ do{ my $x = [
          'autosplit' => undef,
          'license' => 'perl',
          'build_requires' => {
-                               'Test::More' => '0.88',
+                               'Test::More' => '0.98',
                                'File::Find' => 0,
                                'File::Temp' => 0,
-                               'Module::Build' => '0.3601'
+                               'Module::Build' => '0.4001'
                              },
          'config' => undef,
          'blib' => 'blib',

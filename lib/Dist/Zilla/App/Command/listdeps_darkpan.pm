@@ -7,7 +7,7 @@ BEGIN {
   $Dist::Zilla::App::Command::listdeps_darkpan::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.1';
+  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.2';
 }
 
 # FILENAME: listdeps_darkpan.pm
@@ -43,7 +43,7 @@ sub _extract_dependencies {
   if ($missing) {
     @dark = grep { not $_->is_satisfied } @dark;
   }
-  @dark = sort { lc $a->url cmp lc $b->url } @dark;
+  @dark = sort { lc $a->uri cmp lc $b->uri } @dark;
   return @dark;
 }
 
@@ -73,7 +73,7 @@ Dist::Zilla::App::Command::listdeps_darkpan - List DarkPAN dependencies
 
 =head1 VERSION
 
-version 0.2.1
+version 0.2.2
 
 =head1 SYNOPSIS
 

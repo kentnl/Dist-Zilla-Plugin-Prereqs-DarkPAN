@@ -1,5 +1,25 @@
 ﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
+0.2.2 2012-07-07T10:27:26Z
+ [Bugfixes]
+ - github: closes #2 , listdeps_darkpan syntax error which leads to it not
+   working. Thanks to Tomohiro Hosaka (BOKUTIN) for reporting.
+
+ [Dependencies::Changed::Build]
+ - requires : Module::Build 0.3601 -> 0.4001
+
+ [Dependencies::Changed::Configure]
+ - requires : Module::Build 0.3601 -> 0.4001
+
+ [Dependencies::Changed::Develop]
+ - suggests : Dist::Zilla::PluginBundle::Author::KENTNL v1.3.0 -> v1.4.1
+
+ [Dependencies::Changed::Test]
+ - requires : Test::More 0.88 -> 0.98
+
+ [Misc]
+ - Regenerated 000-report-versions-tiny.t to be custom build of code.
+
 0.2.1 2012-05-24T11:21:00Z
  [Bugfixes]
  - github: closes #1 , loading Cached Package DB's fails due to not loading

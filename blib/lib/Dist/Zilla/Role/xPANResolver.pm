@@ -7,7 +7,7 @@ BEGIN {
   $Dist::Zilla::Role::xPANResolver::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Role::xPANResolver::VERSION = '0.2.1';
+  $Dist::Zilla::Role::xPANResolver::VERSION = '0.2.2';
 }
 
 # FILENAME: xPANResolver.pm
@@ -84,7 +84,7 @@ Dist::Zilla::Role::xPANResolver - Tools to resolve a package to a URI from a CPA
 
 =head1 VERSION
 
-version 0.2.1
+version 0.2.2
 
 =head1 METHODS
 
