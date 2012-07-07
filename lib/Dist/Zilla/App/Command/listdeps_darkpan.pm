@@ -43,7 +43,7 @@ sub _extract_dependencies {
   if ($missing) {
     @dark = grep { not $_->is_satisfied } @dark;
   }
-  @dark = sort { lc $a->url cmp lc $b->url } @dark;
+  @dark = sort { lc $a->uri cmp lc $b->uri } @dark;
   return @dark;
 }
 
