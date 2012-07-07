@@ -1,6 +1,6 @@
 ﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
-0.2.2 2012-07-07T10:24:18Z
+0.2.2 2012-07-07T10:24:52Z
  [Bugfixes]
  - github: closes #2 , listdeps_darkpan syntax error which leads to it not
    working. Thanks to Tomohiro Hosaka (BOKUTIN) for reporting.
