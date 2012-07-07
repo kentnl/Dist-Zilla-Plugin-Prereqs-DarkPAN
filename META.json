@@ -16,12 +16,12 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Module::Build" : "0.3601"
+            "Module::Build" : "0.4001"
          }
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.3601"
+            "Module::Build" : "0.4001"
          }
       },
       "develop" : {
@@ -32,7 +32,7 @@
             "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "0"
          },
          "suggests" : {
-            "Dist::Zilla::PluginBundle::Author::KENTNL" : "v1.3.0"
+            "Dist::Zilla::PluginBundle::Author::KENTNL" : "v1.4.1"
          }
       },
       "runtime" : {
@@ -57,7 +57,7 @@
          "requires" : {
             "File::Find" : "0",
             "File::Temp" : "0",
-            "Test::More" : "0.88"
+            "Test::More" : "0.98"
          }
       }
    },
@@ -395,6 +395,11 @@
             },
             "name" : "Prereqs",
             "version" : "4.300020"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Author::KENTNL::Prereqs::Latest::Selective",
+            "name" : "Author::KENTNL::Prereqs::Latest::Selective",
+            "version" : "0.1.0"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
