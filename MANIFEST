@@ -13,7 +13,11 @@ lib/Dist/Zilla/Plugin/Prereqs/DarkPAN.pm
 lib/Dist/Zilla/Role/PrereqSource/External.pm
 lib/Dist/Zilla/Role/xPANResolver.pm
 perlcritic.rc
-t/00-compile.t
+t/00-compile/lib_Dist_Zilla_App_Command_listdeps_darkpan_pm.t
+t/00-compile/lib_Dist_Zilla_ExternalPrereq_pm.t
+t/00-compile/lib_Dist_Zilla_Plugin_Prereqs_DarkPAN_pm.t
+t/00-compile/lib_Dist_Zilla_Role_PrereqSource_External_pm.t
+t/00-compile/lib_Dist_Zilla_Role_xPANResolver_pm.t
 t/000-report-versions-tiny.t
 weaver.ini
 xt/author/critic.t
