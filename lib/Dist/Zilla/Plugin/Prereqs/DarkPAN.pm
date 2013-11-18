@@ -65,7 +65,7 @@ by simply setting the server and path to the resource.
   Foo.uri =  files/foo.tar.gz
 
 You can specify an optional minimum version parameter C<minversion> as a client-side check to
-make sure they haven't installed an older version of Foo. 
+make sure they haven't installed an older version of Foo.
 
 This C<uri> will be reported to listdeps_darkpan with minimal modification, only
 expanding relative paths to absolute ones so tools like C<cpanm> can use them.

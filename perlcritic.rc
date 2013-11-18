@@ -10,7 +10,7 @@ allow_includes = 1
 [CodeLayout::ProhibitTrailingWhitespace]
 
 [Documentation::PodSpelling]
-stop_words = DarkPAN borged CPAN DDG plugin MicroCPAN cpans CPANs cpan ish naïve
+stop_words = DarkPAN borged CPAN DDG plugin MicroCPAN cpans CPANs cpan ish naïve externalised
 
 [Subroutines::ProhibitUnusedPrivateSubroutines]
 private_name_regex = _(?!build_)\w

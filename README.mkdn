@@ -50,7 +50,7 @@ and have it work.
 
 ## A Simple HTTP Server
 
-The easiest DarkPAN-ish thing that this module supports is naïve HTTP Servers,
+The easiest DarkPAN-ish thing that this module supports is naÃ¯ve HTTP Servers,
 by simply setting the server and path to the resource.
 
     [Prereqs::DarkPAN]
@@ -58,7 +58,7 @@ by simply setting the server and path to the resource.
     Foo.uri =  files/foo.tar.gz
 
 You can specify an optional minimum version parameter `minversion` as a client-side check to
-make sure they haven't installed an older version of Foo. 
+make sure they haven't installed an older version of Foo.
 
 This `uri` will be reported to listdeps\_darkpan with minimal modification, only
 expanding relative paths to absolute ones so tools like `cpanm` can use them.
