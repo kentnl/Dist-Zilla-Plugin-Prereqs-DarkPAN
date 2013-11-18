@@ -12,7 +12,7 @@ BEGIN {
 
 # FILENAME: xPANResolver.pm
 # CREATED: 30/10/11 14:05:14 by Kent Fredric (kentnl) <kentfredric@gmail.com>
-# ABSTRACT: Tools to resolve a package to a URI from a CPAN/DARKPAN mirror.
+# ABSTRACT: Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.
 
 use Moose::Role;
 
@@ -80,7 +80,7 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Role::xPANResolver - Tools to resolve a package to a URI from a CPAN/DARKPAN mirror.
+Dist::Zilla::Role::xPANResolver - Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.
 
 =head1 VERSION
 
