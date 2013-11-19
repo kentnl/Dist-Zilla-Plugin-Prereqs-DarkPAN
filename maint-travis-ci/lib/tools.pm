@@ -100,8 +100,7 @@ sub fixup_sterile {
   get_sterile();
   my $cwd = cwd();
   chdir '/tmp/perl5-sterile';
-  safe_exec( 'bash', 'patch_fixlist.sh',
-    '/home/travis/perl5/perlbrew/perls/' . $ENV{TRAVIS_PERL_VERSION} );
+  safe_exec( 'bash', 'patch_fixlist.sh', '/home/travis/perl5/perlbrew/perls/' . $ENV{TRAVIS_PERL_VERSION} );
   chdir $cwd;
   $fixed_up = 1;
 }
