@@ -7,7 +7,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Prereqs::DarkPAN::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.2';
+  $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.3';
 }
 
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
@@ -58,8 +58,7 @@ sub _add_dep {
   # TODO perhaps have support for multiple URLs with either some
   # fallback strategy or round-robbin or random-source support.
   # Not a priority atm.
-  return $logger->log_fatal(
-    [ 'tried to define base uri for \'%s\' more than once.', $key ] )
+  return $logger->log_fatal( [ 'tried to define base uri for \'%s\' more than once.', $key ] )
     if exists $ds->{$key};
 
   return ( $ds->{$key} = $value );
@@ -78,18 +77,13 @@ sub _add_attribute {
 
   my $supported_attrs = { map { $_ => 1 } qw( minversion uri ) };
 
-  return $logger->log_fatal(
-    [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key, ],
-  ) if not exists $supported_attrs->{$attribute};
+  return $logger->log_fatal( [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key, ], )
+    if not exists $supported_attrs->{$attribute};
 
   $attributes->{$key} //= {};
 
-  return $logger->log_fatal(
-    [
-      'tried to set attribute \'%s\' for %s more than once.', $attribute,
-      $key,
-    ]
-  ) if exists $attributes->{$key}->{$attribute};
+  return $logger->log_fatal( [ 'tried to set attribute \'%s\' for %s more than once.', $attribute, $key, ] )
+    if exists $attributes->{$key}->{$attribute};
 
   return ( $attributes->{$key}->{$attribute} = $value );
 
@@ -104,8 +98,7 @@ sub _collect_data {
   # -phase
   # -type
   # as supported by Prereqs are not supported here ( at least, not yet )
-  return $logger->log_fatal(
-    'dash ( - ) prefixed parameters are presently not supported.')
+  return $logger->log_fatal('dash ( - ) prefixed parameters are presently not supported.')
     if $key =~ /\A-/msx;
 
   if ( $key =~ /\A([^.]+)[.](.*\z)/msx ) {
@@ -148,18 +141,11 @@ sub BUILDARGS {
   my $attributes = {};
 
   for my $key ( keys %config ) {
-    $class->_collect_data(
-      { logger => $logger, deps => $deps, attributes => $attributes, },
-      $key, $config{$key} );
+    $class->_collect_data( { logger => $logger, deps => $deps, attributes => $attributes, }, $key, $config{$key} );
   }
   for my $dep ( keys %{$attributes} ) {
-    $logger->log_fatal(
-      [
-        '[%s] Attributes specified for dependency \'%s\', which is not defined',
-        $name,
-        $dep
-      ]
-    ) unless exists $deps->{$dep};
+    $logger->log_fatal( [ '[%s] Attributes specified for dependency \'%s\', which is not defined', $name, $dep ] )
+      unless exists $deps->{$dep};
   }
   for my $dep ( keys %{$deps} ) {
     require Dist::Zilla::ExternalPrereq;
@@ -203,9 +189,10 @@ no Moose;
 1;
 
 __END__
+
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -213,7 +200,7 @@ Dist::Zilla::Plugin::Prereqs::DarkPAN - Depend on things from arbitrary places-n
 
 =head1 VERSION
 
-version 0.2.2
+version 0.2.3
 
 =head1 SYNOPSIS
 
@@ -255,6 +242,18 @@ or
 
 and have it work.
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Plugin::Prereqs::DarkPAN",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":"Dist::Zilla::Role::PrereqSource::External"
+}
+
+
+=end MetaPOD::JSON
+
 =head1 DarkPAN Configurations.
 
 =head2 A Simple HTTP Server
@@ -267,7 +266,7 @@ by simply setting the server and path to the resource.
   Foo.uri =  files/foo.tar.gz
 
 You can specify an optional minimum version parameter C<minversion> as a client-side check to
-make sure they haven't installed an older version of Foo. 
+make sure they haven't installed an older version of Foo.
 
 This C<uri> will be reported to listdeps_darkpan with minimal modification, only
 expanding relative paths to absolute ones so tools like C<cpanm> can use them.
@@ -310,10 +309,9 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

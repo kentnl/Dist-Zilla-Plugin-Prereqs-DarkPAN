@@ -7,20 +7,17 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "File::Find" => 0,
-    "File::Temp" => 0,
-    "Module::Build" => "0.4001",
-    "Test::More" => "0.98"
+    "Module::Build" => "0.4201"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4001"
+    "Module::Build" => "0.4201"
   },
   "dist_abstract" => "Depend on things from arbitrary places-not-CPAN",
   "dist_author" => [
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Prereqs-DarkPAN",
-  "dist_version" => "0.2.2",
+  "dist_version" => "0.2.3",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Plugin::Prereqs::DarkPAN",
   "recommends" => {},
@@ -41,9 +38,23 @@ my %module_build_args = (
     "strict" => 0,
     "warnings" => 0
   },
-  "script_files" => []
+  "script_files" => [],
+  "test_requires" => {
+    "Test::More" => "1.001002"
+  }
 );
 
+
+my %fallback_build_requires = (
+  "Module::Build" => "0.4201",
+  "Test::More" => "1.001002"
+);
+
+
+unless ( eval { Module::Build->VERSION(0.4004) } ) {
+  delete $module_build_args{test_requires};
+  $module_build_args{build_requires} = \%fallback_build_requires;
+}
 
 my $build = Module::Build->new(%module_build_args);
 

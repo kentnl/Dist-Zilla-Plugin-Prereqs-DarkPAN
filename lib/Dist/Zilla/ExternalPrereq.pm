@@ -6,12 +6,13 @@ BEGIN {
   $Dist::Zilla::ExternalPrereq::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::ExternalPrereq::VERSION = '0.2.2';
+  $Dist::Zilla::ExternalPrereq::VERSION = '0.2.3';
 }
 
 # FILENAME: ExternalPrereq.pm
 # CREATED: 30/10/11 10:07:40 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: A representation of an externalised prerequisite
+
 
 use Moose;
 with 'Dist::Zilla::Role::Plugin', 'Dist::Zilla::Role::xPANResolver';
@@ -79,11 +80,11 @@ no Moose;
 __PACKAGE__->meta->make_immutable;
 1;
 
-
 __END__
+
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -91,7 +92,7 @@ Dist::Zilla::ExternalPrereq - A representation of an externalised prerequisite
 
 =head1 VERSION
 
-version 0.2.2
+version 0.2.3
 
 =head1 METHODS
 
@@ -101,16 +102,27 @@ version 0.2.2
 
 Reports if the dependency looks like its installed.
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::ExternalPrereq",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":["Dist::Zilla::Role::Plugin","Dist::Zilla::Role::xPANResolver"]
+}
+
+
+=end MetaPOD::JSON
+
 =head1 AUTHOR
 
 Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

@@ -7,7 +7,7 @@ BEGIN {
   $Dist::Zilla::App::Command::listdeps_darkpan::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.2';
+  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.3';
 }
 
 # FILENAME: listdeps_darkpan.pm
@@ -37,8 +37,7 @@ sub _extract_dependencies {
     push @dark, @_;
   };
 
-  $_->register_external_prereqs($callback)
-    for $zilla->plugins_with('-PrereqSource::External')->flatten;
+  $_->register_external_prereqs($callback) for $zilla->plugins_with('-PrereqSource::External')->flatten;
 
   if ($missing) {
     @dark = grep { not $_->is_satisfied } @dark;
@@ -61,11 +60,11 @@ sub execute {
 }
 1;
 
-
 __END__
+
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -73,12 +72,23 @@ Dist::Zilla::App::Command::listdeps_darkpan - List DarkPAN dependencies
 
 =head1 VERSION
 
-version 0.2.2
+version 0.2.3
 
 =head1 SYNOPSIS
 
 This code is mostly borged from the C<listdeps> command as a temporary measure till upstream
 add native support.
+
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::App::Command::listdeps_darkpan",
+    "interface":"class",
+    "inherits":"Dist::Zilla::App::Command"
+}
+
+
+=end MetaPOD::JSON
 
 =head1 AUTHOR
 
@@ -86,10 +96,9 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

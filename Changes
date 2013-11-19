@@ -1,21 +1,119 @@
 ﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
+0.2.3 2013-11-19T05:31:25Z
+ [00 Minor/Maintenance]
+ - No significant changes, mostly just a tooling update.
+
+ [Dependencies::Added / develop requires]
+ - Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl
+ - Dist::Zilla::Plugin::Authority 1.006
+ - Dist::Zilla::Plugin::AutoPrereqs
+ - Dist::Zilla::Plugin::CheckExtraTests
+ - Dist::Zilla::Plugin::ConfirmRelease
+ - Dist::Zilla::Plugin::EOLTests
+ - Dist::Zilla::Plugin::Git::Check
+ - Dist::Zilla::Plugin::Git::Commit
+ - Dist::Zilla::Plugin::Git::CommitBuild
+ - Dist::Zilla::Plugin::Git::GatherDir
+ - Dist::Zilla::Plugin::Git::NextVersion
+ - Dist::Zilla::Plugin::Git::Tag
+ - Dist::Zilla::Plugin::GithubMeta
+ - Dist::Zilla::Plugin::License
+ - Dist::Zilla::Plugin::Manifest
+ - Dist::Zilla::Plugin::ManifestSkip
+ - Dist::Zilla::Plugin::MetaConfig
+ - Dist::Zilla::Plugin::MetaData::BuiltWith
+ - Dist::Zilla::Plugin::MetaJSON
+ - Dist::Zilla::Plugin::MetaProvides::Package 1.14000001
+ - Dist::Zilla::Plugin::MetaTests
+ - Dist::Zilla::Plugin::MetaYAML
+ - Dist::Zilla::Plugin::ModuleBuild
+ - Dist::Zilla::Plugin::NextRelease
+ - Dist::Zilla::Plugin::PkgVersion
+ - Dist::Zilla::Plugin::PodCoverageTests
+ - Dist::Zilla::Plugin::PodSyntaxTests
+ - Dist::Zilla::Plugin::PodWeaver
+ - Dist::Zilla::Plugin::Prereqs
+ - Dist::Zilla::Plugin::Prereqs::MatchInstalled
+ - Dist::Zilla::Plugin::PruneCruft
+ - Dist::Zilla::Plugin::ReadmeAnyFromPod
+ - Dist::Zilla::Plugin::ReadmeFromPod
+ - Dist::Zilla::Plugin::ReportVersions::Tiny
+ - Dist::Zilla::Plugin::Test::CPAN::Changes
+ - Dist::Zilla::Plugin::Test::Compile::PerFile
+ - Dist::Zilla::Plugin::Test::Kwalitee
+ - Dist::Zilla::Plugin::Test::MinimumVersion
+ - Dist::Zilla::Plugin::Test::Perl::Critic
+ - Dist::Zilla::Plugin::TestRelease
+ - Dist::Zilla::Plugin::Twitter
+ - Dist::Zilla::Plugin::UploadToCPAN
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.002001
+ - Pod::Coverage::TrustPod
+ - Test::CPAN::Changes 0.19
+ - Test::CPAN::Meta
+ - Test::Kwalitee 1.12
+ - Test::Pod 1.41
+ - Test::Pod::Coverage 1.08
+ - version 0.9901
+
+ [Dependencies::Added / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
+
+ [Dependencies::Changed / build requires]
+ - Module::Build 0.4001 → 0.4201
+
+ [Dependencies::Changed / configure requires]
+ - Module::Build 0.4001 → 0.4201
+
+ [Dependencies::Changed / test requires]
+ - Test::More 0.98 → 1.001002
+
+ [Dependencies::Removed / develop recommends]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
+
+ [Dependencies::Removed / develop requires]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite
+
+ [Dependencies::Removed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.4.1
+
+ [Dependencies::Removed / test requires]
+ - File::Find
+ - File::Temp
+
+ [Documentation]
+ - Copyright year updated.
+ - MetaPOD annotations added.
+
+ [Meta]
+ - Bugtracker to github.
+
+ [Packaging]
+ - Use test_requires
+ - Use new merged_prereqs
+
+ [Tests]
+ - Regen Kwalitee
+ - Regen CPAN::Changes
+ - Regen ReportVersions::Tiny to avoid devel deps
+ - Migrate from Test::Compile to Test::Compile::PerFile
+
 0.2.2 2012-07-07T10:27:26Z
  [Bugfixes]
  - github: closes #2 , listdeps_darkpan syntax error which leads to it not
    working. Thanks to Tomohiro Hosaka (BOKUTIN) for reporting.
 
- [Dependencies::Changed::Build]
- - requires : Module::Build 0.3601 -> 0.4001
+ [Dependencies::Changed / build requires]
+ - Module::Build 0.3601 → 0.4001
 
- [Dependencies::Changed::Configure]
- - requires : Module::Build 0.3601 -> 0.4001
+ [Dependencies::Changed / configure requires]
+ - Module::Build 0.3601 → 0.4001
 
- [Dependencies::Changed::Develop]
- - suggests : Dist::Zilla::PluginBundle::Author::KENTNL v1.3.0 -> v1.4.1
+ [Dependencies::Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.3.0 → v1.4.1
 
- [Dependencies::Changed::Test]
- - requires : Test::More 0.88 -> 0.98
+ [Dependencies::Changed / test requires]
+ - Test::More 0.88 → 0.98
 
  [Misc]
  - Regenerated 000-report-versions-tiny.t to be custom build of code.
@@ -25,10 +123,11 @@
  - github: closes #1 , loading Cached Package DB's fails due to not loading
    the class. Thanks to Tomohiro Hosaka/BOKUTIN for reporting.
 
- [Dependencies::Changed::Develop]
- - recommends: Dist::Zilla::PluginBundle::Author::KENTNL::Lite
-   0.01009803 -> v1.3.0
- - suggests: Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 -> v1.3.0
+ [Dependencies::Changed / develop recommends]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite 0.01009803 → v1.3.0
+
+ [Dependencies::Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 → v1.3.0
 
  [Tests::New]
  - release/minimum-version
@@ -40,10 +139,10 @@
  - the old behaviour can be attained by specifying PKG.uri = with either an
    absolute uri, or a relative uri.
 
- [Dependencies]
- - new: runtime requires App::Cache
- - new: runtime requires Parse::CPAN::Packages
- - new: runtime requires URI
+ [Dependencies::Added / runtime requires]
+ - App::Cache
+ - Parse::CPAN::Packages
+ - URI
 
  [Packages]
  - new: Dist::Zilla::Role::xPANResolver which handles
