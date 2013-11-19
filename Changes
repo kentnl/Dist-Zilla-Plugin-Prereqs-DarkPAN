@@ -1,6 +1,6 @@
 ﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
-0.2.3 2013-11-19T04:53:56Z
+0.2.3 2013-11-19T04:58:35Z
  [00 Minor/Maintenance]
  - No significant changes, mostly just a tooling update.
 
@@ -60,10 +60,10 @@
  - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
 
  [Dependencies::Changed / build requires]
- - Module::Build 0.4001 → 0.4200
+ - Module::Build 0.4001 → 0.4201
 
  [Dependencies::Changed / configure requires]
- - Module::Build 0.4001 → 0.4200
+ - Module::Build 0.4001 → 0.4201
 
  [Dependencies::Changed / test requires]
  - Test::More 0.98 → 1.001002
@@ -83,6 +83,7 @@
 
  [Documentation]
  - Copyright year updated.
+ - MetaPOD annotations added.
 
  [Meta]
  - Bugtracker to github.
@@ -102,17 +103,17 @@
  - github: closes #2 , listdeps_darkpan syntax error which leads to it not
    working. Thanks to Tomohiro Hosaka (BOKUTIN) for reporting.
 
- [Dependencies::Changed::Build]
- - requires : Module::Build 0.3601 -> 0.4001
+ [Dependencies::Changed / build requires]
+ - Module::Build 0.3601 → 0.4001
 
- [Dependencies::Changed::Configure]
- - requires : Module::Build 0.3601 -> 0.4001
+ [Dependencies::Changed / configure requires]
+ - Module::Build 0.3601 → 0.4001
 
- [Dependencies::Changed::Develop]
- - suggests : Dist::Zilla::PluginBundle::Author::KENTNL v1.3.0 -> v1.4.1
+ [Dependencies::Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.3.0 → v1.4.1
 
- [Dependencies::Changed::Test]
- - requires : Test::More 0.88 -> 0.98
+ [Dependencies::Changed / test requires]
+ - Test::More 0.88 → 0.98
 
  [Misc]
  - Regenerated 000-report-versions-tiny.t to be custom build of code.
@@ -122,10 +123,11 @@
  - github: closes #1 , loading Cached Package DB's fails due to not loading
    the class. Thanks to Tomohiro Hosaka/BOKUTIN for reporting.
 
- [Dependencies::Changed::Develop]
- - recommends: Dist::Zilla::PluginBundle::Author::KENTNL::Lite
-   0.01009803 -> v1.3.0
- - suggests: Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 -> v1.3.0
+ [Dependencies::Changed / develop recommends]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite 0.01009803 → v1.3.0
+
+ [Dependencies::Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 → v1.3.0
 
  [Tests::New]
  - release/minimum-version
@@ -137,10 +139,10 @@
  - the old behaviour can be attained by specifying PKG.uri = with either an
    absolute uri, or a relative uri.
 
- [Dependencies]
- - new: runtime requires App::Cache
- - new: runtime requires Parse::CPAN::Packages
- - new: runtime requires URI
+ [Dependencies::Added / runtime requires]
+ - App::Cache
+ - Parse::CPAN::Packages
+ - URI
 
  [Packages]
  - new: Dist::Zilla::Role::xPANResolver which handles
