@@ -7,10 +7,10 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Module::Build" => "0.4200"
+    "Module::Build" => "0.4201"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4200"
+    "Module::Build" => "0.4201"
   },
   "dist_abstract" => "Depend on things from arbitrary places-not-CPAN",
   "dist_author" => [
@@ -46,7 +46,7 @@ my %module_build_args = (
 
 
 my %fallback_build_requires = (
-  "Module::Build" => "0.4200",
+  "Module::Build" => "0.4201",
   "Test::More" => "1.001002"
 );
 

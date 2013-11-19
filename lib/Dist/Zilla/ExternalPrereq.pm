@@ -13,6 +13,7 @@ BEGIN {
 # CREATED: 30/10/11 10:07:40 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: A representation of an externalised prerequisite
 
+
 use Moose;
 with 'Dist::Zilla::Role::Plugin', 'Dist::Zilla::Role::xPANResolver';
 use Class::Load;
@@ -100,6 +101,18 @@ version 0.2.3
   $dep->is_satisfied
 
 Reports if the dependency looks like its installed.
+
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::ExternalPrereq",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":["Dist::Zilla::Role::Plugin","Dist::Zilla::Role::xPANResolver"]
+}
+
+
+=end MetaPOD::JSON
 
 =head1 AUTHOR
 

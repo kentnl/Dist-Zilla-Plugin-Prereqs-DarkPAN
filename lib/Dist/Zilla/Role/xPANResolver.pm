@@ -14,6 +14,7 @@ BEGIN {
 # CREATED: 30/10/11 14:05:14 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.
 
+
 use Moose::Role;
 
 sub _cache {
@@ -104,6 +105,16 @@ recent distribution.
 
 It should then return a fully qualified path to that resource suitable for
 passing to C<wget> or C<cpanm>.
+
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Role::xPANResolver",
+    "interface":"role"
+}
+
+
+=end MetaPOD::JSON
 
 =head1 AUTHOR
 

@@ -8,6 +8,8 @@ META.json
 META.yml
 README
 dist.ini
+layout/self_structure.dot
+layout/self_structure.png
 lib/Dist/Zilla/App/Command/listdeps_darkpan.pm
 lib/Dist/Zilla/ExternalPrereq.pm
 lib/Dist/Zilla/Plugin/Prereqs/DarkPAN.pm

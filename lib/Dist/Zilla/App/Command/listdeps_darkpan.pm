@@ -80,6 +80,17 @@ version 0.2.3
 This code is mostly borged from the C<listdeps> command as a temporary measure till upstream
 add native support.
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::App::Command::listdeps_darkpan",
+    "interface":"class",
+    "inherits":"Dist::Zilla::App::Command"
+}
+
+
+=end MetaPOD::JSON
+
 =head1 AUTHOR
 
 Kent Fredric <kentnl@cpan.org>

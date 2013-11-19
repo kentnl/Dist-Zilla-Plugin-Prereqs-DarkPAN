@@ -16,6 +16,7 @@ BEGIN {
 use Moose::Role;
 with 'Dist::Zilla::Role::Plugin';
 
+
 use namespace::autoclean;
 
 requires 'register_external_prereqs';
@@ -36,6 +37,17 @@ Dist::Zilla::Role::PrereqSource::External - A plugin that depends on DarkPAN/Ext
 =head1 VERSION
 
 version 0.2.3
+
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Role::PrereqSource::External",
+    "interface":"role",
+    "does":"Dist::Zilla::Role::Plugin"
+}
+
+
+=end MetaPOD::JSON
 
 =head1 AUTHOR
 

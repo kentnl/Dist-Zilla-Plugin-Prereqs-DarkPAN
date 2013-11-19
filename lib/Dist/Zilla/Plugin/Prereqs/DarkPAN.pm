@@ -256,6 +256,18 @@ or
 
 and have it work.
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Plugin::Prereqs::DarkPAN",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":"Dist::Zilla::Role::PrereqSource::External"
+}
+
+
+=end MetaPOD::JSON
+
 =head1 DarkPAN Configurations.
 
 =head2 A Simple HTTP Server

@@ -12,22 +12,34 @@ if ( not env_exists('TRAVIS') ) {
   exit 1;
 }
 if ( not env_exists('STERILIZE_ENV') ) {
-  diag("\e[31STERILIZE_ENV is not set, skipping, because this is probably Travis's Default ( and unwanted ) target");
+  diag(
+"\e[31STERILIZE_ENV is not set, skipping, because this is probably Travis's Default ( and unwanted ) target"
+  );
   exit 0;
 }
-if ( env_is( 'TRAVIS_BRANCH', 'master' ) and env_is( 'TRAVIS_PERL_VERSION', '5.8' ) ) {
-  diag("\e[31minstalldeps skipped on 5.8 on master, because \@Git, a dependency of \@Author::KENTNL, is unavailble on 5.8\e[0m");
+if (  env_is( 'TRAVIS_BRANCH', 'master' )
+  and env_is( 'TRAVIS_PERL_VERSION', '5.8' ) )
+{
+  diag(
+"\e[31minstalldeps skipped on 5.8 on master, because \@Git, a dependency of \@Author::KENTNL, is unavailble on 5.8\e[0m"
+  );
   exit 0;
 }
-my (@params) = qw[ --quiet --notest --mirror http://cpan.metacpan.org/ --no-man-pages ];
+my (@params) =
+  qw[ --quiet --notest --mirror http://cpan.metacpan.org/ --no-man-pages ];
 if ( env_true('DEVELOPER_DEPS') ) {
   push @params, '--dev';
 }
 if ( env_is( 'TRAVIS_BRANCH', 'master' ) ) {
   cpanm( @params, 'Dist::Zilla', 'Capture::Tiny',      'Pod::Weaver' );
   cpanm( @params, '--dev',       'Dist::Zilla~>5.002', 'Pod::Weaver' );
-  safe_exec( 'git', 'config', '--global', 'user.email', 'kentfredric+travisci@gmail.com' );
-  safe_exec( 'git', 'config', '--global', 'user.name',  'Travis CI ( On behalf of Kent Fredric )' );
+  safe_exec(
+    'git',      'config',
+    '--global', 'user.email',
+    'kentfredric+travisci@gmail.com'
+  );
+  safe_exec( 'git', 'config', '--global', 'user.name',
+    'Travis CI ( On behalf of Kent Fredric )' );
 
   my $stdout = capture_stdout {
     safe_exec( 'dzil', 'authordeps', '--missing' );
