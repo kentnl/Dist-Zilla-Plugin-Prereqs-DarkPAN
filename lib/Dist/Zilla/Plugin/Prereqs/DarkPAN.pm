@@ -153,8 +153,7 @@ sub _add_dep {
   # TODO perhaps have support for multiple URLs with either some
   # fallback strategy or round-robbin or random-source support.
   # Not a priority atm.
-  return $logger->log_fatal(
-    [ 'tried to define base uri for \'%s\' more than once.', $key ] )
+  return $logger->log_fatal( [ 'tried to define base uri for \'%s\' more than once.', $key ] )
     if exists $ds->{$key};
 
   return ( $ds->{$key} = $value );
@@ -173,18 +172,13 @@ sub _add_attribute {
 
   my $supported_attrs = { map { $_ => 1 } qw( minversion uri ) };
 
-  return $logger->log_fatal(
-    [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key, ],
-  ) if not exists $supported_attrs->{$attribute};
+  return $logger->log_fatal( [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key, ], )
+    if not exists $supported_attrs->{$attribute};
 
   $attributes->{$key} //= {};
 
-  return $logger->log_fatal(
-    [
-      'tried to set attribute \'%s\' for %s more than once.', $attribute,
-      $key,
-    ]
-  ) if exists $attributes->{$key}->{$attribute};
+  return $logger->log_fatal( [ 'tried to set attribute \'%s\' for %s more than once.', $attribute, $key, ] )
+    if exists $attributes->{$key}->{$attribute};
 
   return ( $attributes->{$key}->{$attribute} = $value );
 
@@ -199,8 +193,7 @@ sub _collect_data {
   # -phase
   # -type
   # as supported by Prereqs are not supported here ( at least, not yet )
-  return $logger->log_fatal(
-    'dash ( - ) prefixed parameters are presently not supported.')
+  return $logger->log_fatal('dash ( - ) prefixed parameters are presently not supported.')
     if $key =~ /\A-/msx;
 
   if ( $key =~ /\A([^.]+)[.](.*\z)/msx ) {
@@ -243,18 +236,11 @@ sub BUILDARGS {
   my $attributes = {};
 
   for my $key ( keys %config ) {
-    $class->_collect_data(
-      { logger => $logger, deps => $deps, attributes => $attributes, },
-      $key, $config{$key} );
+    $class->_collect_data( { logger => $logger, deps => $deps, attributes => $attributes, }, $key, $config{$key} );
   }
   for my $dep ( keys %{$attributes} ) {
-    $logger->log_fatal(
-      [
-        '[%s] Attributes specified for dependency \'%s\', which is not defined',
-        $name,
-        $dep
-      ]
-    ) unless exists $deps->{$dep};
+    $logger->log_fatal( [ '[%s] Attributes specified for dependency \'%s\', which is not defined', $name, $dep ] )
+      unless exists $deps->{$dep};
   }
   for my $dep ( keys %{$deps} ) {
     require Dist::Zilla::ExternalPrereq;

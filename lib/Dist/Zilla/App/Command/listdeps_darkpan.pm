@@ -48,8 +48,7 @@ sub _extract_dependencies {
     push @dark, @_;
   };
 
-  $_->register_external_prereqs($callback)
-    for $zilla->plugins_with('-PrereqSource::External')->flatten;
+  $_->register_external_prereqs($callback) for $zilla->plugins_with('-PrereqSource::External')->flatten;
 
   if ($missing) {
     @dark = grep { not $_->is_satisfied } @dark;
