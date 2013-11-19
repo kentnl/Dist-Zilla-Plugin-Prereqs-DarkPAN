@@ -11,6 +11,17 @@ package Dist::Zilla::App::Command::listdeps_darkpan;
 use Dist::Zilla::App -command;
 use Moose::Autobox;
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::App::Command::listdeps_darkpan",
+    "interface":"class",
+    "inherits":"Dist::Zilla::App::Command"
+}
+
+=end MetaPOD::JSON
+
+
 =head1 SYNOPSIS
 
 This code is mostly borged from the C<listdeps> command as a temporary measure till upstream

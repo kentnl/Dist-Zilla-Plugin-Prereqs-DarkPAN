@@ -46,6 +46,15 @@ or
 
 and have it work.
 
+{
+    "namespace":"Dist::Zilla::Plugin::Prereqs::DarkPAN",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":"Dist::Zilla::Role::PrereqSource::External"
+}
+
+
+
 # DarkPAN Configurations.
 
 ## A Simple HTTP Server

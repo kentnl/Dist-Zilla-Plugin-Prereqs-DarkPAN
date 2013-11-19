@@ -11,6 +11,17 @@ with 'Dist::Zilla::Role::PrereqSource::External';
 
 use namespace::autoclean;
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Plugin::Prereqs::DarkPAN",
+    "interface":"class",
+    "inherits":"Moose::Object",
+    "does":"Dist::Zilla::Role::PrereqSource::External"
+}
+
+=end MetaPOD::JSON
+
 =head1 SYNOPSIS
 
 From time to time, people find themselves in want to depending on something that

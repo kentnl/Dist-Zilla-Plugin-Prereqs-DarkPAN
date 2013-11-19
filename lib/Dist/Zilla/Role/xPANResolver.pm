@@ -8,6 +8,17 @@ package Dist::Zilla::Role::xPANResolver;
 # CREATED: 30/10/11 14:05:14 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Role::xPANResolver",
+    "interface":"role"
+}
+
+=end MetaPOD::JSON
+
+=cut
+
 use Moose::Role;
 
 sub _cache {

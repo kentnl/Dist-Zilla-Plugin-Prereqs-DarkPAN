@@ -10,6 +10,18 @@ package Dist::Zilla::Role::PrereqSource::External;
 use Moose::Role;
 with 'Dist::Zilla::Role::Plugin';
 
+=begin MetaPOD::JSON v1.1.0
+
+{
+    "namespace":"Dist::Zilla::Role::PrereqSource::External",
+    "interface":"role",
+    "does":"Dist::Zilla::Role::Plugin"
+}
+
+=end MetaPOD::JSON
+
+=cut
+
 use namespace::autoclean;
 
 requires 'register_external_prereqs';
