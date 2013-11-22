@@ -7,7 +7,7 @@ BEGIN {
   $Dist::Zilla::Plugin::Prereqs::DarkPAN::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.3';
+  $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.4';
 }
 
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
@@ -200,7 +200,7 @@ Dist::Zilla::Plugin::Prereqs::DarkPAN - Depend on things from arbitrary places-n
 
 =head1 VERSION
 
-version 0.2.3
+version 0.2.4
 
 =head1 SYNOPSIS
 

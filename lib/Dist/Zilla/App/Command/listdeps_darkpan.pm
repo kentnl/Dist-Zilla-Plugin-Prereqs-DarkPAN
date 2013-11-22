@@ -7,7 +7,7 @@ BEGIN {
   $Dist::Zilla::App::Command::listdeps_darkpan::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.3';
+  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.4';
 }
 
 # FILENAME: listdeps_darkpan.pm
@@ -72,7 +72,7 @@ Dist::Zilla::App::Command::listdeps_darkpan - List DarkPAN dependencies
 
 =head1 VERSION
 
-version 0.2.3
+version 0.2.4
 
 =head1 SYNOPSIS
 
