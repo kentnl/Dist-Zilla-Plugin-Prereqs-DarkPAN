@@ -48,7 +48,8 @@ has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
 
 sub _add_dep {
   my ( $class, $stash, $args ) = @_;
-  my $ds = ( $stash->{deps} //= {} );
+  $stash->{deps} = {} unless exists $stash->{deps};
+  my $ds = $stash->{deps};
   my $logger = $stash->{logger};
 
   my $key   = $args->{key};
@@ -150,12 +151,16 @@ sub BUILDARGS {
   }
   for my $dep ( keys %{$deps} ) {
     require Dist::Zilla::ExternalPrereq;
+    my $edep = $attributes->{$dep};
+    $edep = {} unless defined $edep;
+
     my $instance = Dist::Zilla::ExternalPrereq->new(
       name        => $dep,
       plugin_name => $name . '{ExternalPrereq: dep on=\'' . $dep . '\'}',
       zilla       => $zilla,
       baseurl     => $deps->{$dep},
-      %{ $attributes->{$dep} // {} }
+
+      %{ $edep }
     );
     $_deps->{$dep} = $instance;
   }
