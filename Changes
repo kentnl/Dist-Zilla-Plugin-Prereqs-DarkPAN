@@ -1,6 +1,6 @@
 ﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
-0.2.4 2013-11-22T09:37:40Z
+0.2.4 2013-11-22T09:40:01Z
  [00 Minor]
  - Remove hard dep on 5.10
  - Upgrade deps on Module::Build

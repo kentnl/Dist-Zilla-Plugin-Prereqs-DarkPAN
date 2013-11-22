@@ -49,7 +49,7 @@ has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
 sub _add_dep {
   my ( $class, $stash, $args ) = @_;
   $stash->{deps} = {} unless exists $stash->{deps};
-  my $ds = $stash->{deps};
+  my $ds     = $stash->{deps};
   my $logger = $stash->{logger};
 
   my $key   = $args->{key};
@@ -69,9 +69,9 @@ sub _add_attribute {
   my ( $class, $stash, $args ) = @_;
 
   $stash->{attributes} = {} unless exists $stash->{attributes};
-  
+
   my $attributes = $stash->{attributes};
-  my $logger = $stash->{logger};
+  my $logger     = $stash->{logger};
 
   my $key       = $args->{key};
   my $attribute = $args->{attribute};
@@ -160,7 +160,7 @@ sub BUILDARGS {
       zilla       => $zilla,
       baseurl     => $deps->{$dep},
 
-      %{ $edep }
+      %{$edep}
     );
     $_deps->{$dep} = $instance;
   }
