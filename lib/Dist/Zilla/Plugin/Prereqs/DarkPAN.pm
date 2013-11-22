@@ -1,4 +1,3 @@
-use 5.010000;
 use strict;
 use warnings;
 
@@ -144,7 +143,8 @@ has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
 
 sub _add_dep {
   my ( $class, $stash, $args ) = @_;
-  my $ds = ( $stash->{deps} //= {} );
+  $stash->{deps} = {} unless exists $stash->{deps};
+  my $ds     = $stash->{deps};
   my $logger = $stash->{logger};
 
   my $key   = $args->{key};
@@ -163,8 +163,10 @@ sub _add_dep {
 sub _add_attribute {
   my ( $class, $stash, $args ) = @_;
 
-  my $attributes = ( $stash->{attributes} //= {} );
-  my $logger = $stash->{logger};
+  $stash->{attributes} = {} unless exists $stash->{attributes};
+
+  my $attributes = $stash->{attributes};
+  my $logger     = $stash->{logger};
 
   my $key       = $args->{key};
   my $attribute = $args->{attribute};
@@ -175,7 +177,7 @@ sub _add_attribute {
   return $logger->log_fatal( [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key, ], )
     if not exists $supported_attrs->{$attribute};
 
-  $attributes->{$key} //= {};
+  $attributes->{$key} = {} unless exists $attributes->{$key};
 
   return $logger->log_fatal( [ 'tried to set attribute \'%s\' for %s more than once.', $attribute, $key, ] )
     if exists $attributes->{$key}->{$attribute};
@@ -244,12 +246,16 @@ sub BUILDARGS {
   }
   for my $dep ( keys %{$deps} ) {
     require Dist::Zilla::ExternalPrereq;
+    my $edep = $attributes->{$dep};
+    $edep = {} unless defined $edep;
+
     my $instance = Dist::Zilla::ExternalPrereq->new(
       name        => $dep,
       plugin_name => $name . '{ExternalPrereq: dep on=\'' . $dep . '\'}',
       zilla       => $zilla,
       baseurl     => $deps->{$dep},
-      %{ $attributes->{$dep} // {} }
+
+      %{$edep}
     );
     $_deps->{$dep} = $instance;
   }
