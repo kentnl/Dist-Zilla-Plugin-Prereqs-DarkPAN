@@ -20,8 +20,11 @@ package Dist::Zilla::Role::xPANResolver;
 
 use Moose::Role;
 
+my $c;
+
 sub _cache {
-  state $c = do {
+  return $c if defined $c;
+  $c = do {
     require App::Cache;
     ## no critic (ProhibitMagicNumbers)
     App::Cache->new(
