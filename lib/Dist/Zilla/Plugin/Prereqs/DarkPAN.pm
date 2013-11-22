@@ -67,7 +67,9 @@ sub _add_dep {
 sub _add_attribute {
   my ( $class, $stash, $args ) = @_;
 
-  my $attributes = ( $stash->{attributes} //= {} );
+  $stash->{attributes} = {} unless exists $stash->{attributes};
+  
+  my $attributes = $stash->{attributes};
   my $logger = $stash->{logger};
 
   my $key       = $args->{key};
@@ -79,7 +81,7 @@ sub _add_attribute {
   return $logger->log_fatal( [ 'Attribute \'%s\' for key \'%s\' not supported.', $attribute, $key, ], )
     if not exists $supported_attrs->{$attribute};
 
-  $attributes->{$key} //= {};
+  $attributes->{$key} = {} unless exists $attributes->{$key};
 
   return $logger->log_fatal( [ 'tried to set attribute \'%s\' for %s more than once.', $attribute, $key, ] )
     if exists $attributes->{$key}->{$attribute};
