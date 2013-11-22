@@ -1,6 +1,16 @@
 ﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
-0.2.4 2013-11-22T09:24:09Z
+0.2.4 2013-11-22T09:27:49Z
+ [00 Minor]
+ - Remove hard dep on 5.10
+ - Upgrade deps on Module::Build
+
+ [Dependencies::Stats]
+ - Dependencies changed, see Changes.deps{,.all,.dev} for details
+ - build: ↑1
+ - configure: ↑1
+ - develop: ↑1
+ - runtime: ↓1
 
 0.2.3 2013-11-19T05:31:25Z
  [00 Minor/Maintenance]
@@ -83,6 +93,13 @@
  - File::Find
  - File::Temp
 
+ [Dependencies::Stats]
+ - Dependencies changed, see Changes.deps{,.all,.dev} for details
+ - build: ↑1
+ - configure: ↑1
+ - develop: +51 -3
+ - test: ↑1 -2
+
  [Documentation]
  - Copyright year updated.
  - MetaPOD annotations added.
@@ -117,6 +134,13 @@
  [Dependencies::Changed / test requires]
  - Test::More 0.88 → 0.98
 
+ [Dependencies::Stats]
+ - Dependencies changed, see Changes.deps{,.all,.dev} for details
+ - build: ↑1
+ - configure: ↑1
+ - develop: ↑1
+ - test: ↑1
+
  [Misc]
  - Regenerated 000-report-versions-tiny.t to be custom build of code.
 
@@ -130,6 +154,10 @@
 
  [Dependencies::Changed / develop suggests]
  - Dist::Zilla::PluginBundle::Author::KENTNL v1.0.0 → v1.3.0
+
+ [Dependencies::Stats]
+ - Dependencies changed, see Changes.deps{,.all,.dev} for details
+ - develop: ↑2
 
  [Tests::New]
  - release/minimum-version
@@ -145,6 +173,10 @@
  - App::Cache
  - Parse::CPAN::Packages
  - URI
+
+ [Dependencies::Stats]
+ - Dependencies changed, see Changes.deps{,.all,.dev} for details
+ - runtime: +3
 
  [Packages]
  - new: Dist::Zilla::Role::xPANResolver which handles
