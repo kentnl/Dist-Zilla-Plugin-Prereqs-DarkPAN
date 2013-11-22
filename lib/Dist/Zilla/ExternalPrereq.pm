@@ -6,7 +6,7 @@ BEGIN {
   $Dist::Zilla::ExternalPrereq::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::ExternalPrereq::VERSION = '0.2.3';
+  $Dist::Zilla::ExternalPrereq::VERSION = '0.2.4';
 }
 
 # FILENAME: ExternalPrereq.pm
@@ -92,7 +92,7 @@ Dist::Zilla::ExternalPrereq - A representation of an externalised prerequisite
 
 =head1 VERSION
 
-version 0.2.3
+version 0.2.4
 
 =head1 METHODS
 

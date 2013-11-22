@@ -3,10 +3,10 @@ abstract: 'Depend on things from arbitrary places-not-CPAN'
 author:
   - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
-  Module::Build: 0.4201
+  Module::Build: 0.4202
   Test::More: 1.001002
 configure_requires:
-  Module::Build: 0.4201
+  Module::Build: 0.4202
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 5.006, CPAN::Meta::Converter version 2.132830'
 license: perl
@@ -17,19 +17,19 @@ name: Dist-Zilla-Plugin-Prereqs-DarkPAN
 provides:
   Dist::Zilla::App::Command::listdeps_darkpan:
     file: lib/Dist/Zilla/App/Command/listdeps_darkpan.pm
-    version: v0.2.3
+    version: v0.2.4
   Dist::Zilla::ExternalPrereq:
     file: lib/Dist/Zilla/ExternalPrereq.pm
-    version: v0.2.3
+    version: v0.2.4
   Dist::Zilla::Plugin::Prereqs::DarkPAN:
     file: lib/Dist/Zilla/Plugin/Prereqs/DarkPAN.pm
-    version: v0.2.3
+    version: v0.2.4
   Dist::Zilla::Role::PrereqSource::External:
     file: lib/Dist/Zilla/Role/PrereqSource/External.pm
-    version: v0.2.3
+    version: v0.2.4
   Dist::Zilla::Role::xPANResolver:
     file: lib/Dist/Zilla/Role/xPANResolver.pm
-    version: v0.2.3
+    version: v0.2.4
 requires:
   App::Cache: 0
   Class::Load: 0
@@ -42,20 +42,20 @@ requires:
   Try::Tiny: 0
   URI: 0
   namespace::autoclean: 0
-  perl: v5.10.0
+  perl: 5.006
   strict: 0
   warnings: 0
 resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-DarkPAN/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-DarkPAN
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-DarkPAN.git
-version: 0.2.3
+version: 0.2.4
 x_BuiltWith:
   modules:
     App::Cache: 0.37
     Class::Load: 0.20
     Dist::Zilla::App: 5.006
-    Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl: 2.002001
+    Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl: 2.004000
     Dist::Zilla::Plugin::Authority: 1.006
     Dist::Zilla::Plugin::AutoPrereqs: 5.006
     Dist::Zilla::Plugin::CheckExtraTests: 0.016
@@ -72,9 +72,9 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Manifest: 5.006
     Dist::Zilla::Plugin::ManifestSkip: 5.006
     Dist::Zilla::Plugin::MetaConfig: 5.006
-    Dist::Zilla::Plugin::MetaData::BuiltWith: 0.04000000
+    Dist::Zilla::Plugin::MetaData::BuiltWith: 0.04000001
     Dist::Zilla::Plugin::MetaJSON: 5.006
-    Dist::Zilla::Plugin::MetaProvides::Package: 1.15000000
+    Dist::Zilla::Plugin::MetaProvides::Package: 1.15000001
     Dist::Zilla::Plugin::MetaTests: 5.006
     Dist::Zilla::Plugin::MetaYAML: 5.006
     Dist::Zilla::Plugin::ModuleBuild: 5.006
@@ -97,16 +97,16 @@ x_BuiltWith:
     Dist::Zilla::Plugin::TestRelease: 5.006
     Dist::Zilla::Plugin::Twitter: 0.023
     Dist::Zilla::Plugin::UploadToCPAN: 5.006
-    Dist::Zilla::PluginBundle::Author::KENTNL: 2.002001
+    Dist::Zilla::PluginBundle::Author::KENTNL: 2.004000
     Dist::Zilla::PluginBundle::Author::KENTNL::Lite: 1.7.2
     Dist::Zilla::Role::Plugin: 5.006
-    Module::Build: 0.4201
+    Module::Build: 0.4202
     Moose: 2.1106
     Moose::Autobox: 0.15
     Moose::Role: 2.1106
     Parse::CPAN::Packages: 2.38
     Pod::Coverage::TrustPod: 0.100003
-    Test::CPAN::Changes: 0.25
+    Test::CPAN::Changes: 0.26
     Test::CPAN::Meta: 0.23
     Test::Kwalitee: 1.17
     Test::More: 1.001002
@@ -160,7 +160,7 @@ x_Dist_Zilla:
           inherit_version: 1
           meta_noindex: 1
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: 1.15000000
+      version: 1.15000001
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:
@@ -177,7 +177,7 @@ x_Dist_Zilla:
               - '-i'
             uname_call: uname
       name: '@Author::KENTNL/MetaData::BuiltWith'
-      version: 0.04000000
+      version: 0.04000001
     -
       class: Dist::Zilla::Plugin::Git::GatherDir
       name: '@Author::KENTNL/Git::GatherDir'
@@ -368,7 +368,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl
       name: '@Author::KENTNL/Author::KENTNL::MinimumPerl'
-      version: 2.002001
+      version: 2.004000
     -
       class: Dist::Zilla::Plugin::Authority
       name: '@Author::KENTNL/Authority'
@@ -472,14 +472,6 @@ x_Dist_Zilla:
           phase: develop
           type: requires
       name: '@Author::KENTNL/::Role::BundleDeps'
-      version: 5.006
-    -
-      class: Dist::Zilla::Plugin::Prereqs
-      config:
-        Dist::Zilla::Plugin::Prereqs:
-          phase: runtime
-          type: requires
-      name: Prereqs
       version: 5.006
     -
       class: Dist::Zilla::Plugin::FinderCode

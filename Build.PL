@@ -7,17 +7,17 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Module::Build" => "0.4201"
+    "Module::Build" => "0.4202"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4201"
+    "Module::Build" => "0.4202"
   },
   "dist_abstract" => "Depend on things from arbitrary places-not-CPAN",
   "dist_author" => [
     "Kent Fredric <kentnl\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Prereqs-DarkPAN",
-  "dist_version" => "0.2.3",
+  "dist_version" => "0.2.4",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Plugin::Prereqs::DarkPAN",
   "recommends" => {},
@@ -34,7 +34,7 @@ my %module_build_args = (
     "Try::Tiny" => 0,
     "URI" => 0,
     "namespace::autoclean" => 0,
-    "perl" => "v5.10.0",
+    "perl" => "5.006",
     "strict" => 0,
     "warnings" => 0
   },
@@ -46,7 +46,7 @@ my %module_build_args = (
 
 
 my %fallback_build_requires = (
-  "Module::Build" => "0.4201",
+  "Module::Build" => "0.4202",
   "Test::More" => "1.001002"
 );
 

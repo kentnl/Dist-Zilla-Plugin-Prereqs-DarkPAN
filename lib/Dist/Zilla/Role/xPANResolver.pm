@@ -1,4 +1,3 @@
-use 5.010000;
 use strict;
 use warnings;
 
@@ -7,7 +6,7 @@ BEGIN {
   $Dist::Zilla::Role::xPANResolver::AUTHORITY = 'cpan:KENTNL';
 }
 {
-  $Dist::Zilla::Role::xPANResolver::VERSION = '0.2.3';
+  $Dist::Zilla::Role::xPANResolver::VERSION = '0.2.4';
 }
 
 # FILENAME: xPANResolver.pm
@@ -17,8 +16,11 @@ BEGIN {
 
 use Moose::Role;
 
+my $c;
+
 sub _cache {
-  state $c = do {
+  return $c if defined $c;
+  $c = do {
     require App::Cache;
     ## no critic (ProhibitMagicNumbers)
     App::Cache->new(
@@ -85,7 +87,7 @@ Dist::Zilla::Role::xPANResolver - Tools to resolve a package to a C<URI> from a 
 
 =head1 VERSION
 
-version 0.2.3
+version 0.2.4
 
 =head1 METHODS
 
