@@ -55,6 +55,9 @@ has 'minversion' => (
   predicate => 'has_minversion',
 );
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 =method is_satisfied
 
   $dep->is_satisfied
@@ -102,7 +105,6 @@ sub _build_uri {
   return $self->resolve_module( $self->baseurl, $self->name );
 
 }
-no Moose;
-__PACKAGE__->meta->make_immutable;
+
 1;
 

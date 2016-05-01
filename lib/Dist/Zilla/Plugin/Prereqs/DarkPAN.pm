@@ -137,6 +137,9 @@ has prereq_type => (
 
 has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
 
+__PACKAGE__->meta->make_immutable;
+no Moose;
+
 sub _add_dep {
   my ( undef, $stash, $args ) = @_;
   $stash->{deps} = {} unless exists $stash->{deps};
@@ -285,7 +288,6 @@ sub register_external_prereqs {
   return;
 }
 
-__PACKAGE__->meta->make_immutable;
-no Moose;
+
 
 1;
