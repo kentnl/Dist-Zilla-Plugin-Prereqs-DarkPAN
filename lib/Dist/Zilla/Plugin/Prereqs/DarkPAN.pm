@@ -26,95 +26,6 @@ use namespace::autoclean;
 
 =end MetaPOD::JSON
 
-=head1 SYNOPSIS
-
-From time to time, people find themselves in want to depending on something that
-isn't from CPAN, but their team/in-house crew want a painless way to depend on
-it anyway.
-
-  [Prereqs::DarkPAN]
-  DDG = http://adarkpan.example.org/  ; DarkPAN Base URI
-  ; optional
-  DDG.minversion = 0.4.0
-  ; optional
-  ; But likely to be substantially faster.
-  DDG.uri = /path/to/foo/bar.tar.gz
-
-
-This would provide to various user commands the knowledge that C<DDG.tar.gz> was
-wanted to provide the package C<DDG>.
-
-Our hope is one day you can just do
-
-  # Doesn't work yet :(
-  $ cpanm $( dzil listdeps )
-
-  or
-  # Doesn't work yet :(
-  $ cpanm $( dzil listdeps --missing )
-
-and have it do the right things.
-
-In the interim, you can do
-
-    $ cpanm $( dzil listdeps )  \
-      && cpanm $( dzil listdeps_darkpan )
-
-or
-
-    $ cpanm $( dzil listdeps --missing ) \
-      && cpanm $( dzil listdeps_darkpan --missing )
-
-and have it work.
-
-
-=head1 DarkPAN Configurations.
-
-=head2 A Simple HTTP Server
-
-The easiest DarkPAN-ish thing that this module supports is naïve HTTP Servers,
-by simply setting the server and path to the resource.
-
-  [Prereqs::DarkPAN]
-  Foo = http://my.server/
-  Foo.uri =  files/foo.tar.gz
-
-You can specify an optional minimum version parameter C<minversion> as a client-side check to
-make sure they haven't installed an older version of Foo.
-
-This C<uri> will be reported to listdeps_darkpan with minimal modification, only
-expanding relative paths to absolute ones so tools like C<cpanm> can use them.
-
-=head2 A C<MicroCPAN> Configuration
-
-There is a newly formed system for creating "proper" CPANs which only contain a
-handful of modules. For these services you can simply do
-
-  [Prereqs::DarkPAN]
-  Foo = http://my.server/
-
-And we'll fire up all sorts of magic to get the C<02packages.details.tar.gz>
-file, shred it, and try installing 'Foo' from there.
-
-=head2 Heavier CPAN configurations
-
-The 3rd use case is when you have somewhat heavy-weight private CPANs where you
-don't want to be encumbered by the weight of downloading and parsing
-C<02packages.details.tar.gz>. If you have a full CPAN clone with a few modules
-stuffed into it, and you only want those stuffed modules while using normal CPAN
-( because the cloned versions from CPAN are now old ), its possibly better to
-use the original notation
-
-  [Prereqs::DarkPAN]
-  Foo = http://my.server/
-  Foo.uri = path/too/foo.tar.gz
-
-As it will only fetch the file specified instead of relying on
-C<02packages.details.tar.gz>
-
-Granted, this latter approach will bind again to downloading a specific version
-of the prerequisite, but this is still here for you if you need it.
-
 =cut
 
 has prereq_phase => (
@@ -267,9 +178,7 @@ sub BUILDARGS {
 
 }
 
-=begin Pod::Coverage
-
-  register_external_prereqs
+=for Pod::Coverage register_external_prereqs
 
 =cut
 
@@ -288,6 +197,94 @@ sub register_external_prereqs {
   return;
 }
 
-
-
 1;
+
+=head1 SYNOPSIS
+
+From time to time, people find themselves in want to depending on something that
+isn't from CPAN, but their team/in-house crew want a painless way to depend on
+it anyway.
+
+  [Prereqs::DarkPAN]
+  DDG = http://adarkpan.example.org/  ; DarkPAN Base URI
+  ; optional
+  DDG.minversion = 0.4.0
+  ; optional
+  ; But likely to be substantially faster.
+  DDG.uri = /path/to/foo/bar.tar.gz
+
+
+This would provide to various user commands the knowledge that C<DDG.tar.gz> was
+wanted to provide the package C<DDG>.
+
+Our hope is one day you can just do
+
+  # Doesn't work yet :(
+  $ cpanm $( dzil listdeps )
+
+  or
+  # Doesn't work yet :(
+  $ cpanm $( dzil listdeps --missing )
+
+and have it do the right things.
+
+In the interim, you can do
+
+    $ cpanm $( dzil listdeps )  \
+      && cpanm $( dzil listdeps_darkpan )
+
+or
+
+    $ cpanm $( dzil listdeps --missing ) \
+      && cpanm $( dzil listdeps_darkpan --missing )
+
+and have it work.
+
+=head1 DarkPAN Configurations.
+
+=head2 A Simple HTTP Server
+
+The easiest DarkPAN-ish thing that this module supports is naïve HTTP Servers,
+by simply setting the server and path to the resource.
+
+  [Prereqs::DarkPAN]
+  Foo = http://my.server/
+  Foo.uri =  files/foo.tar.gz
+
+You can specify an optional minimum version parameter C<minversion> as a client-side check to
+make sure they haven't installed an older version of Foo.
+
+This C<uri> will be reported to listdeps_darkpan with minimal modification, only
+expanding relative paths to absolute ones so tools like C<cpanm> can use them.
+
+=head2 A C<MicroCPAN> Configuration
+
+There is a newly formed system for creating "proper" CPANs which only contain a
+handful of modules. For these services you can simply do
+
+  [Prereqs::DarkPAN]
+  Foo = http://my.server/
+
+And we'll fire up all sorts of magic to get the C<02packages.details.tar.gz>
+file, shred it, and try installing 'Foo' from there.
+
+=head2 Heavier CPAN configurations
+
+The 3rd use case is when you have somewhat heavy-weight private CPANs where you
+don't want to be encumbered by the weight of downloading and parsing
+C<02packages.details.tar.gz>. If you have a full CPAN clone with a few modules
+stuffed into it, and you only want those stuffed modules while using normal CPAN
+( because the cloned versions from CPAN are now old ), its possibly better to
+use the original notation
+
+  [Prereqs::DarkPAN]
+  Foo = http://my.server/
+  Foo.uri = path/too/foo.tar.gz
+
+As it will only fetch the file specified instead of relying on
+C<02packages.details.tar.gz>
+
+Granted, this latter approach will bind again to downloading a specific version
+of the prerequisite, but this is still here for you if you need it.
+
+=cut

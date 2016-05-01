@@ -69,6 +69,18 @@ sub _resolver_for {
   return $self->_parse_for($absurl);
 }
 
+sub resolve_module {
+  my ( $self, $baseurl, $module ) = @_;
+  my $p = $self->_resolver_for($baseurl)->package($module);
+  my $d = $p->distribution();
+  require URI;
+  my $modroot = URI->new('authors/id/')->abs( URI->new($baseurl) );
+  my $modpath = URI->new( $d->prefix )->abs($modroot);
+  return $modpath->as_string;
+}
+
+1;
+
 =method resolve_module
 
   with 'Dist::Zilla::Role::xPANResolver';
@@ -87,16 +99,3 @@ It should then return a fully qualified path to that resource suitable for
 passing to C<wget> or C<cpanm>.
 
 =cut
-
-sub resolve_module {
-  my ( $self, $baseurl, $module ) = @_;
-  my $p = $self->_resolver_for($baseurl)->package($module);
-  my $d = $p->distribution();
-  require URI;
-  my $modroot = URI->new('authors/id/')->abs( URI->new($baseurl) );
-  my $modpath = URI->new( $d->prefix )->abs($modroot);
-  return $modpath->as_string;
-}
-
-1;
-
