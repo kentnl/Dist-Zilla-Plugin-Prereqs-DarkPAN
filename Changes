@@ -5,6 +5,7 @@
  - Replace installer with EUMM ( could break some downstreams, primary reason for v0.3 )
  - Remove use of Class::Load
  - Remove useless Moose::Autobox messing up dzil version load time.
+ - Add MetaConfig data
 
  [Dependencies::Stats]
  - Dependencies changed since 0.2.4, see misc/*.deps* for details

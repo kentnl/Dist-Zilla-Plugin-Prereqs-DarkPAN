@@ -23,7 +23,21 @@ our $VERSION = 'v0.3.0';
 
 =cut
 
-use Moose::Role;
+use Moose::Role qw( around );
+
+around dump_config => sub {
+  my ( $orig, $self, @args ) = @_;
+  my $config = $self->$orig(@args);
+  my $payload = $config->{ +__PACKAGE__ } = {};
+
+  ## no critic (RequireInterpolationOfMetachars)
+  $payload->{ q[$] . __PACKAGE__ . q[::VERSION] } = $VERSION;
+  $payload->{q[$App::Cache::VERSION]}            = $App::Cache::VERSION            if $INC{'App/Cache.pm'};
+  $payload->{q[$Parse::CPAN::Packages::VERSION]} = $Parse::CPAN::Packages::VERSION if $INC{'Parse/CPAN/Packages.pm'};
+  $payload->{q[$URI::VERSION]}                   = $URI::VERSION                   if $INC{'URI.pm'};
+  return $config;
+};
+
 no Moose::Role;
 
 my $c;
