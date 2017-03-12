@@ -212,7 +212,10 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Git::GatherDir
       config:
         Dist::Zilla::Plugin::GatherDir:
-          exclude_filename: []
+          exclude_filename:
+            - README
+            - README.mkdn
+            - README.pod
           exclude_match: []
           follow_symlinks: '0'
           include_dotfiles: '1'
