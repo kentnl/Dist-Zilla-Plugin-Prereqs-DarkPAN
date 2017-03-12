@@ -6,9 +6,9 @@
  [Dependencies::Stats]
  - Dependencies changed since 0.2.4, see misc/*.deps* for details
  - build: ↑1
- - configure: ↑1
- - develop: +4 ↑2 -1
- - test: ↑1
+ - configure: +1 ↑1
+ - develop: +6 ↑2 -3
+ - test: +1 ↑1
 
 0.2.4 2013-11-22T09:51:44Z
  [00 Minor]
