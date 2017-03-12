@@ -3,7 +3,9 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::DarkPAN;
-$Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.5';
+
+our $VERSION = 'v0.3.0';
+
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -300,7 +302,7 @@ Dist::Zilla::Plugin::Prereqs::DarkPAN - Depend on things from arbitrary places-n
 
 =head1 VERSION
 
-version 0.2.5
+version v0.3.0
 
 =head1 SYNOPSIS
 

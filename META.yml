@@ -21,19 +21,19 @@ name: Dist-Zilla-Plugin-Prereqs-DarkPAN
 provides:
   Dist::Zilla::App::Command::listdeps_darkpan:
     file: lib/Dist/Zilla/App/Command/listdeps_darkpan.pm
-    version: v0.2.5
+    version: v0.3.0
   Dist::Zilla::ExternalPrereq:
     file: lib/Dist/Zilla/ExternalPrereq.pm
-    version: v0.2.5
+    version: v0.3.0
   Dist::Zilla::Plugin::Prereqs::DarkPAN:
     file: lib/Dist/Zilla/Plugin/Prereqs/DarkPAN.pm
-    version: v0.2.5
+    version: v0.3.0
   Dist::Zilla::Role::PrereqSource::External:
     file: lib/Dist/Zilla/Role/PrereqSource/External.pm
-    version: v0.2.5
+    version: v0.3.0
   Dist::Zilla::Role::xPANResolver:
     file: lib/Dist/Zilla/Role/xPANResolver.pm
-    version: v0.2.5
+    version: v0.3.0
 recommends:
   Moose: '2.000'
 requires:
@@ -55,4 +55,4 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-DarkPAN/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-DarkPAN
   repository: https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-DarkPAN.git
-version: 0.2.5
+version: v0.3.0

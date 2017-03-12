@@ -3,7 +3,9 @@ use strict;
 use warnings;
 
 package Dist::Zilla::ExternalPrereq;
-$Dist::Zilla::ExternalPrereq::VERSION = '0.2.5';
+
+our $VERSION = 'v0.3.0';
+
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 # FILENAME: ExternalPrereq.pm
@@ -107,7 +109,7 @@ Dist::Zilla::ExternalPrereq - A representation of an externalised prerequisite
 
 =head1 VERSION
 
-version 0.2.5
+version v0.3.0
 
 =head1 METHODS
 

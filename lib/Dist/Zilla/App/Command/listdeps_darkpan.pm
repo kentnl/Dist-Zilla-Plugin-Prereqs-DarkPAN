@@ -3,7 +3,9 @@ use strict;
 use warnings;
 
 package Dist::Zilla::App::Command::listdeps_darkpan;
-$Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.5';
+
+our $VERSION = 'v0.3.0';
+
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 # FILENAME: listdeps_darkpan.pm
@@ -85,7 +87,7 @@ Dist::Zilla::App::Command::listdeps_darkpan - List DarkPAN dependencies
 
 =head1 VERSION
 
-version 0.2.5
+version v0.3.0
 
 =head1 SYNOPSIS
 
