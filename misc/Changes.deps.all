@@ -16,6 +16,10 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Test::MinimumVersion
  - Test::More 1.302073
 
+ [Added / develop suggests]
+ - Dist::Zilla::App::Command::bakeini 0.002006
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.025021
+
  [Added / test recommends]
  - CPAN::Meta 2.120900
 
@@ -31,7 +35,6 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Module::Build 0.4202 → 0.4220
 
  [Changed / develop requires]
- - Dist::Zilla::PluginBundle::Author::KENTNL 2.004000 → 2.025021
  - Test::Kwalitee 1.12 → 1.21
 
  [Changed / test requires]
@@ -44,7 +47,11 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::Plugin::NextRelease
  - Dist::Zilla::Plugin::PruneCruft
  - Dist::Zilla::Plugin::ReportVersions::Tiny
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.004000
  - version 0.9901
+
+ [Removed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
 
 0.2.4 2013-11-22T09:51:44Z
  [Changed / build requires]
