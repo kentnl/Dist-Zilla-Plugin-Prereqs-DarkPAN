@@ -85,7 +85,6 @@ x_BuiltWith:
     Dist::Zilla::Plugin::PodWeaver: '4.008'
     Dist::Zilla::Plugin::Prereqs: '6.009'
     Dist::Zilla::Plugin::Prereqs::MatchInstalled: '1.001002'
-    Dist::Zilla::Plugin::PruneCruft: '6.009'
     Dist::Zilla::Plugin::ReadmeAnyFromPod: '0.163250'
     Dist::Zilla::Plugin::ReadmeFromPod: '0.35'
     Dist::Zilla::Plugin::ReportVersions::Tiny: '1.12'
@@ -295,10 +294,6 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Test::Perl::Critic
       name: '@Author::KENTNL/Test::Perl::Critic'
       version: '3.000'
-    -
-      class: Dist::Zilla::Plugin::PruneCruft
-      name: '@Author::KENTNL/PruneCruft'
-      version: '6.009'
     -
       class: Dist::Zilla::Plugin::ManifestSkip
       name: '@Author::KENTNL/ManifestSkip'
