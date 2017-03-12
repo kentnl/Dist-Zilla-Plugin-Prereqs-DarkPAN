@@ -10,7 +10,7 @@ our $VERSION = 'v0.3.0';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
-use Moose qw( with has );
+use Moose qw( with has around );
 with 'Dist::Zilla::Role::PrereqSource::External';
 
 use namespace::autoclean;
@@ -46,7 +46,22 @@ has prereq_type => (
 
 # For full phase control, use above commented code.
 
-has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
+has _deps     => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
+has _raw_deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
+
+around 'dump_config' => sub {
+  my ( $orig, $self, @args ) = @_;
+  my $config = $self->$orig(@args);
+  my $localconf = $config->{ +__PACKAGE__ } = {};
+
+  $localconf->{prereq_phase} = $self->prereq_phase;
+  $localconf->{prereq_type}  = $self->prereq_type;
+  $localconf->{_raw_deps}    = $self->_raw_deps;
+
+  $localconf->{ q[$] . __PACKAGE__ . q[::VERSION] } = $VERSION
+    unless __PACKAGE__ eq ref $self;
+  return $config;
+};
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
@@ -173,6 +188,7 @@ sub BUILDARGS {
     zilla       => $zilla,
     plugin_name => $name,
     _deps       => $_deps,
+    _raw_deps   => $deps,
     logger      => $logger,
   };
 
