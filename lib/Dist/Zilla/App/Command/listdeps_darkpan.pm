@@ -2,13 +2,8 @@ use strict;
 use warnings;
 
 package Dist::Zilla::App::Command::listdeps_darkpan;
-BEGIN {
-  $Dist::Zilla::App::Command::listdeps_darkpan::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.4';
-}
-
+our $AUTHORITY = 'cpan:KENTNL';
+$Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.5';
 # FILENAME: listdeps_darkpan.pm
 # CREATED: 30/10/11 11:07:09 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: List DarkPAN dependencies
@@ -71,7 +66,7 @@ Dist::Zilla::App::Command::listdeps_darkpan - List DarkPAN dependencies
 
 =head1 VERSION
 
-version 0.2.4
+version 0.2.5
 
 =head1 SYNOPSIS
 
@@ -95,7 +90,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2017 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
