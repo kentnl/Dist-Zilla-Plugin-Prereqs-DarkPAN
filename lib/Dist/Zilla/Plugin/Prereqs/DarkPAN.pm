@@ -41,8 +41,8 @@ it anyway.
   DDG.uri = /path/to/foo/bar.tar.gz
 
 
-This would provide to various user commands the knowledge that DDG.tar.gz was
-wanted to provide the package DDG.
+This would provide to various user commands the knowledge that C<DDG.tar.gz> was
+wanted to provide the package C<DDG>.
 
 Our hope is one day you can just do
 
@@ -85,9 +85,9 @@ make sure they haven't installed an older version of Foo.
 This C<uri> will be reported to listdeps_darkpan with minimal modification, only
 expanding relative paths to absolute ones so tools like C<cpanm> can use them.
 
-=head2 A MicroCPAN Configuration
+=head2 A C<MicroCPAN> Configuration
 
-There is a newly formed system for creating "proper" cpans which only contain a
+There is a newly formed system for creating "proper" CPANs which only contain a
 handful of modules. For these services you can simply do
 
   [Prereqs::DarkPAN]
@@ -100,9 +100,9 @@ file, shred it, and try installing 'Foo' from there.
 
 The 3rd use case is when you have somewhat heavy-weight private CPANs where you
 don't want to be encumbered by the weight of downloading and parsing
-C<02packages.details.tar.gz>. If you have a full cpan clone with a few modules
+C<02packages.details.tar.gz>. If you have a full CPAN clone with a few modules
 stuffed into it, and you only want those stuffed modules while using normal CPAN
-( because the cloned versions from cpan are now old ), its possibly better to
+( because the cloned versions from CPAN are now old ), its possibly better to
 use the original notation
 
   [Prereqs::DarkPAN]
