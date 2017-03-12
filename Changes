@@ -1,6 +1,6 @@
 Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
-0.2.5 2017-03-12T17:41:40Z
+0.2.5 2017-03-12T17:42:04Z
  - Bugfix: Avoid test failures with -Ddefault_inc_excludes_dot ( by automatic plugin update )
 
  [Dependencies::Stats]
