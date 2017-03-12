@@ -31,6 +31,7 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
 
  [Changed / develop requires]
  - Dist::Zilla::Plugin::MetaData::BuiltWith 0 → 1.004000
+ - Dist::Zilla::Plugin::Test::Compile::PerFile 0 → 0.003902
  - Test::Kwalitee 1.12 → 1.21
 
  [Removed / develop requires]
