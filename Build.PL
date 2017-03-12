@@ -22,6 +22,9 @@ my %module_build_args = (
   "dist_version" => "0.2.5",
   "license" => "perl",
   "module_name" => "Dist::Zilla::Plugin::Prereqs::DarkPAN",
+  "recommends" => {
+    "Moose" => "2.000"
+  },
   "recursive_test_files" => 1,
   "requires" => {
     "App::Cache" => 0,
