@@ -13,7 +13,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::Plugin::MinimumPerl
  - Dist::Zilla::Plugin::Prereqs::AuthorDeps
  - Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled
+ - Dist::Zilla::Plugin::Readme::Brief
  - Dist::Zilla::Plugin::RunExtraTests
+ - Dist::Zilla::Plugin::Test::EOL
  - Dist::Zilla::Plugin::Test::ReportPrereqs
  - English
  - Software::License::Perl_5
@@ -40,6 +42,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Module::Build 0.4202 → 0.4220
 
  [Changed / develop requires]
+ - Dist::Zilla::Plugin::MetaData::BuiltWith 0 → 1.004000
  - Test::Kwalitee 1.12 → 1.21
 
  [Changed / test requires]
@@ -48,9 +51,11 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Removed / develop requires]
  - Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl
  - Dist::Zilla::Plugin::CheckExtraTests
+ - Dist::Zilla::Plugin::EOLTests
  - Dist::Zilla::Plugin::Git::NextVersion
  - Dist::Zilla::Plugin::NextRelease
  - Dist::Zilla::Plugin::PruneCruft
+ - Dist::Zilla::Plugin::ReadmeFromPod
  - Dist::Zilla::Plugin::ReportVersions::Tiny
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.004000
  - version 0.9901
