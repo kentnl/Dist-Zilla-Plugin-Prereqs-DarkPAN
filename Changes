@@ -1,6 +1,8 @@
-﻿Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
+Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
 {{$NEXT}}
+
+v0.3.0 2017-03-12T17:49:32Z f9d71ed
  - Bugfix: Avoid test failures with -Ddefault_inc_excludes_dot ( by automatic plugin update )
  - Replace installer with EUMM ( could break some downstreams, primary reason for v0.3 )
  - Remove use of Class::Load
