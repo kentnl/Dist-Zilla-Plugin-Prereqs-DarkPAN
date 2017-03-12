@@ -9,6 +9,16 @@ $Dist::Zilla::Role::xPANResolver::VERSION = '0.2.5';
 # ABSTRACT: Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.
 
 
+
+
+
+
+
+
+
+
+
+
 use Moose::Role;
 
 my $c;
@@ -54,6 +64,24 @@ sub _resolver_for {
   my $absurl  = $path->abs($baseurl)->as_string;
   return $self->_parse_for($absurl);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 sub resolve_module {

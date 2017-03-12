@@ -12,6 +12,107 @@ with 'Dist::Zilla::Role::PrereqSource::External';
 use namespace::autoclean;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 has prereq_phase => (
   is       => 'ro',
   isa      => 'Str',
@@ -167,6 +268,11 @@ sub BUILDARGS {
   };
 
 }
+
+
+
+
+
 
 
 sub register_external_prereqs {

@@ -9,6 +9,18 @@ $Dist::Zilla::ExternalPrereq::VERSION = '0.2.5';
 # ABSTRACT: A representation of an externalised prerequisite
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 use Moose;
 with 'Dist::Zilla::Role::Plugin', 'Dist::Zilla::Role::xPANResolver';
 use Class::Load;
@@ -37,6 +49,13 @@ has 'minversion' => (
   is        => 'rw',
   predicate => 'has_minversion',
 );
+
+
+
+
+
+
+
 
 
 sub is_satisfied {
