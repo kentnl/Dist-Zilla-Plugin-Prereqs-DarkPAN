@@ -5,6 +5,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - perl 5.006
 
  [Added / develop requires]
+ - Dist::Zilla::Plugin::Git::NextVersion::Sanitized
  - Dist::Zilla::Plugin::MinimumPerl
  - Dist::Zilla::Plugin::RunExtraTests
  - English
@@ -31,6 +32,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Removed / develop requires]
  - Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl
  - Dist::Zilla::Plugin::CheckExtraTests
+ - Dist::Zilla::Plugin::Git::NextVersion
  - Dist::Zilla::Plugin::PruneCruft
 
 0.2.4 2013-11-22T09:51:44Z
