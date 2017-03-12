@@ -44,6 +44,10 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Added / runtime recommends]
  - Moose 2.000
 
+ [Added / runtime requires]
+ - Module::Runtime
+ - Path::ScanINC
+
  [Added / test recommends]
  - CPAN::Meta 2.120900
  - ExtUtils::MakeMaker 7.00
@@ -86,6 +90,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
 
  [Removed / develop suggests]
  - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
+
+ [Removed / runtime requires]
+ - Class::Load
 
 0.2.4 2013-11-22T09:51:44Z
  [Changed / build requires]

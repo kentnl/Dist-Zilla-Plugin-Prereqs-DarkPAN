@@ -27,8 +27,9 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose qw( with has );
 with 'Dist::Zilla::Role::Plugin', 'Dist::Zilla::Role::xPANResolver';
-use Class::Load;
+use Module::Runtime qw( require_module );
 use Try::Tiny qw( try catch );
+use Path::ScanINC;
 
 has 'name'    => ( isa => 'Str', required => 1, is => 'rw' );
 has 'baseurl' => ( isa => 'Str', required => 1, is => 'rw' );
@@ -64,7 +65,15 @@ has 'minversion' => (
 
 sub is_satisfied {
   my ($self) = shift;
-  return   unless Class::Load::load_optional_class( $self->name, );
+  # Fence the Perl logic first to see if require is going to load a file
+  my (@pmname) = split qr/::|'/xs, $self->name;
+  $pmname[-1] .= '.pm';
+
+  return unless $INC{ join q{/}, @pmname } or defined Path::ScanINC->new()->first_file(@pmname);
+
+  # If Perl would load the file, do so, and propagate failures.
+  require_module( $self->name );
+
   return 1 unless $self->has_minversion;
   my $satisfied = 1;
   try {
