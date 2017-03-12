@@ -40,6 +40,8 @@ my %module_build_args = (
     "warnings" => 0
   },
   "test_requires" => {
+    "ExtUtils::MakeMaker" => 0,
+    "File::Spec" => 0,
     "Test::More" => "1.302073",
     "perl" => "5.006"
   }
@@ -47,6 +49,8 @@ my %module_build_args = (
 
 
 my %fallback_build_requires = (
+  "ExtUtils::MakeMaker" => 0,
+  "File::Spec" => 0,
   "Module::Build" => "0.4220",
   "Test::More" => "1.302073",
   "perl" => "5.006"
