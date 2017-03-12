@@ -1,3 +1,4 @@
+use 5.006;    # our
 use strict;
 use warnings;
 
@@ -7,7 +8,7 @@ package Dist::Zilla::Role::xPANResolver;
 
 # FILENAME: xPANResolver.pm
 # CREATED: 30/10/11 14:05:14 by Kent Fredric (kentnl) <kentfredric@gmail.com>
-# ABSTRACT: Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.
+# ABSTRACT: Tools to resolve a package to a URI from a CPAN/DARKPAN mirror.
 
 =begin MetaPOD::JSON v1.1.0
 
@@ -33,14 +34,14 @@ sub _cache {
       {
         ttl         => 30 * 60,
         application => __PACKAGE__,
-      }
+      },
     );
   };
   return $c;
 }
 
 sub _content_for {
-  my ( $self, $url ) = @_;
+  my ( undef, $url ) = @_;
   return _cache->get_url($url);
 }
 
@@ -53,16 +54,15 @@ sub _parse_for {
     sub {
       my $content = $self->_content_for($url);
       return Parse::CPAN::Packages->new($content);
-    }
+    },
   );
 }
 
 sub _resolver_for {
   my ( $self, $baseurl ) = @_;
   require URI;
-  my $path    = URI->new('modules/02packages.details.txt.gz');
-  my $baseuri = URI->new($baseurl);
-  my $absurl  = $path->abs($baseurl)->as_string;
+  my $path   = URI->new('modules/02packages.details.txt.gz');
+  my $absurl = $path->abs($baseurl)->as_string;
   return $self->_parse_for($absurl);
 }
 

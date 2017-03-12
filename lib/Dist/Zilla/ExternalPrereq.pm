@@ -1,3 +1,4 @@
+use 5.006;    # our
 use strict;
 use warnings;
 
@@ -22,10 +23,10 @@ package Dist::Zilla::ExternalPrereq;
 
 =cut
 
-use Moose;
+use Moose qw( with has );
 with 'Dist::Zilla::Role::Plugin', 'Dist::Zilla::Role::xPANResolver';
 use Class::Load;
-use Try::Tiny;
+use Try::Tiny qw( try catch );
 
 has 'name'    => ( isa => 'Str', required => 1, is => 'rw' );
 has 'baseurl' => ( isa => 'Str', required => 1, is => 'rw' );
@@ -61,7 +62,6 @@ Reports if the dependency looks like its installed.
 
 sub is_satisfied {
   my ($self) = shift;
-  my $opts = {};
   return   unless Class::Load::load_optional_class( $self->name, );
   return 1 unless $self->has_minversion;
   my $satisfied = 1;
