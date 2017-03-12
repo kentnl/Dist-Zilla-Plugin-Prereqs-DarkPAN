@@ -5,6 +5,7 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
  - Dist::Zilla::Plugin::Git::NextRelease
  - Dist::Zilla::Plugin::Git::NextVersion::Sanitized
  - Dist::Zilla::Plugin::MinimumPerl
+ - Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled
  - Dist::Zilla::Plugin::RunExtraTests
  - Dist::Zilla::Plugin::Test::ReportPrereqs
  - English
