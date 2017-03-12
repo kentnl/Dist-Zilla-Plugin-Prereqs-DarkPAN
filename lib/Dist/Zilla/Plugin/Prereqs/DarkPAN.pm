@@ -2,9 +2,10 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::DarkPAN;
-our $AUTHORITY = 'cpan:KENTNL';
 $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.5';
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
+
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose;
 with 'Dist::Zilla::Role::PrereqSource::External';

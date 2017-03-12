@@ -2,8 +2,9 @@ use strict;
 use warnings;
 
 package Dist::Zilla::App::Command::listdeps_darkpan;
-our $AUTHORITY = 'cpan:KENTNL';
 $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.5';
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
+
 # FILENAME: listdeps_darkpan.pm
 # CREATED: 30/10/11 11:07:09 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: List DarkPAN dependencies

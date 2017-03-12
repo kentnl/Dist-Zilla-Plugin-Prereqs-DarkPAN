@@ -2,8 +2,9 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Role::xPANResolver;
-our $AUTHORITY = 'cpan:KENTNL';
 $Dist::Zilla::Role::xPANResolver::VERSION = '0.2.5';
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
+
 # FILENAME: xPANResolver.pm
 # CREATED: 30/10/11 14:05:14 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.

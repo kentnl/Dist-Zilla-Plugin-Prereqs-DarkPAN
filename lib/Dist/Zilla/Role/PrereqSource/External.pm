@@ -2,8 +2,9 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Role::PrereqSource::External;
-our $AUTHORITY = 'cpan:KENTNL';
 $Dist::Zilla::Role::PrereqSource::External::VERSION = '0.2.5';
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
+
 # FILENAME: External.pm
 # CREATED: 30/10/11 10:56:47 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: A plugin that depends on DarkPAN/External sources

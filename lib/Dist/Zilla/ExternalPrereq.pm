@@ -2,8 +2,9 @@ use strict;
 use warnings;
 
 package Dist::Zilla::ExternalPrereq;
-our $AUTHORITY = 'cpan:KENTNL';
 $Dist::Zilla::ExternalPrereq::VERSION = '0.2.5';
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
+
 # FILENAME: ExternalPrereq.pm
 # CREATED: 30/10/11 10:07:40 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: A representation of an externalised prerequisite
