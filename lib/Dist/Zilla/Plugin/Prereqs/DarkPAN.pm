@@ -28,95 +28,6 @@ use namespace::autoclean;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 has prereq_phase => (
   is       => 'ro',
   isa      => 'Str',
@@ -271,8 +182,6 @@ sub BUILDARGS {
 
 
 
-
-
 sub register_external_prereqs {
   my ( $self, $registersub ) = @_;
 
@@ -287,8 +196,6 @@ sub register_external_prereqs {
   }
   return;
 }
-
-
 
 1;
 
@@ -358,6 +265,8 @@ and have it work.
 
 =end MetaPOD::JSON
 
+=for Pod::Coverage register_external_prereqs
+
 =head1 DarkPAN Configurations.
 
 =head2 A Simple HTTP Server
@@ -404,8 +313,6 @@ C<02packages.details.tar.gz>
 
 Granted, this latter approach will bind again to downloading a specific version
 of the prerequisite, but this is still here for you if you need it.
-
-=for Pod::Coverage   register_external_prereqs
 
 =head1 AUTHOR
 

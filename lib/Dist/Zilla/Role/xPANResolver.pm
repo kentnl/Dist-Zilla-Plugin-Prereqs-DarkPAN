@@ -69,25 +69,6 @@ sub _resolver_for {
   return $self->_parse_for($absurl);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 sub resolve_module {
   my ( $self, $baseurl, $module ) = @_;
   my $p = $self->_resolver_for($baseurl)->package($module);
