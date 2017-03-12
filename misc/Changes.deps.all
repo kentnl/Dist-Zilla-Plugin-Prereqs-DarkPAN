@@ -1,11 +1,19 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
 0.2.5
+ [Added / configure requires]
+ - perl 5.006
+
  [Added / develop requires]
+ - Dist::Zilla::Plugin::MinimumPerl
+ - Dist::Zilla::Plugin::RunExtraTests
  - English
  - Test::EOL
  - Test::MinimumVersion
  - Test::More 1.302073
+
+ [Added / test requires]
+ - perl 5.006
 
  [Changed / build requires]
  - Module::Build 0.4202 → 0.4220
@@ -21,6 +29,8 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Test::More 1.001002 → 1.302073
 
  [Removed / develop requires]
+ - Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl
+ - Dist::Zilla::Plugin::CheckExtraTests
  - Dist::Zilla::Plugin::PruneCruft
 
 0.2.4 2013-11-22T09:51:44Z

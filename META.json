@@ -21,15 +21,14 @@
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.4220"
+            "Module::Build" : "0.4220",
+            "perl" : "5.006"
          }
       },
       "develop" : {
          "requires" : {
-            "Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl" : "0",
             "Dist::Zilla::Plugin::Authority" : "1.006",
             "Dist::Zilla::Plugin::AutoPrereqs" : "0",
-            "Dist::Zilla::Plugin::CheckExtraTests" : "0",
             "Dist::Zilla::Plugin::ConfirmRelease" : "0",
             "Dist::Zilla::Plugin::EOLTests" : "0",
             "Dist::Zilla::Plugin::Git::Check" : "0",
@@ -48,6 +47,7 @@
             "Dist::Zilla::Plugin::MetaProvides::Package" : "1.14000001",
             "Dist::Zilla::Plugin::MetaTests" : "0",
             "Dist::Zilla::Plugin::MetaYAML" : "0",
+            "Dist::Zilla::Plugin::MinimumPerl" : "0",
             "Dist::Zilla::Plugin::ModuleBuild" : "0",
             "Dist::Zilla::Plugin::NextRelease" : "0",
             "Dist::Zilla::Plugin::PkgVersion" : "0",
@@ -59,6 +59,7 @@
             "Dist::Zilla::Plugin::ReadmeAnyFromPod" : "0",
             "Dist::Zilla::Plugin::ReadmeFromPod" : "0",
             "Dist::Zilla::Plugin::ReportVersions::Tiny" : "0",
+            "Dist::Zilla::Plugin::RunExtraTests" : "0",
             "Dist::Zilla::Plugin::Test::CPAN::Changes" : "0",
             "Dist::Zilla::Plugin::Test::Compile::PerFile" : "0",
             "Dist::Zilla::Plugin::Test::Kwalitee" : "0",
@@ -104,7 +105,8 @@
       },
       "test" : {
          "requires" : {
-            "Test::More" : "1.302073"
+            "Test::More" : "1.302073",
+            "perl" : "5.006"
          }
       }
    },
@@ -148,10 +150,8 @@
          "App::Cache" : "0.37",
          "Class::Load" : "0.23",
          "Dist::Zilla::App" : "6.009",
-         "Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl" : "2.025021",
          "Dist::Zilla::Plugin::Authority" : "1.009",
          "Dist::Zilla::Plugin::AutoPrereqs" : "6.009",
-         "Dist::Zilla::Plugin::CheckExtraTests" : "0.029",
          "Dist::Zilla::Plugin::ConfirmRelease" : "6.009",
          "Dist::Zilla::Plugin::EOLTests" : "0.19",
          "Dist::Zilla::Plugin::Git::Check" : "2.041",
@@ -170,6 +170,7 @@
          "Dist::Zilla::Plugin::MetaProvides::Package" : "2.004003",
          "Dist::Zilla::Plugin::MetaTests" : "6.009",
          "Dist::Zilla::Plugin::MetaYAML" : "6.009",
+         "Dist::Zilla::Plugin::MinimumPerl" : "1.006",
          "Dist::Zilla::Plugin::ModuleBuild" : "6.009",
          "Dist::Zilla::Plugin::NextRelease" : "6.009",
          "Dist::Zilla::Plugin::PkgVersion" : "6.009",
@@ -181,6 +182,7 @@
          "Dist::Zilla::Plugin::ReadmeAnyFromPod" : "0.163250",
          "Dist::Zilla::Plugin::ReadmeFromPod" : "0.35",
          "Dist::Zilla::Plugin::ReportVersions::Tiny" : "1.12",
+         "Dist::Zilla::Plugin::RunExtraTests" : "0.029",
          "Dist::Zilla::Plugin::Test::CPAN::Changes" : "0.012",
          "Dist::Zilla::Plugin::Test::Compile::PerFile" : "0.004000",
          "Dist::Zilla::Plugin::Test::Kwalitee" : "2.12",
@@ -565,7 +567,7 @@
                   "type" : "suggests"
                }
             },
-            "name" : "@Author::KENTNL/Prereqs/BundleDevelSuggests",
+            "name" : "@Author::KENTNL/BundleDevelSuggests",
             "version" : "6.009"
          },
          {
@@ -576,18 +578,13 @@
                   "type" : "requires"
                }
             },
-            "name" : "@Author::KENTNL/Prereqs/BundleDevelRequires",
+            "name" : "@Author::KENTNL/BundleDevelRequires",
             "version" : "6.009"
          },
          {
-            "class" : "Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl",
-            "config" : {
-               "Dist::Zilla::Plugin::Author::KENTNL::MinimumPerl" : {
-                  "fiveten" : null
-               }
-            },
-            "name" : "@Author::KENTNL/Author::KENTNL::MinimumPerl",
-            "version" : "2.025021"
+            "class" : "Dist::Zilla::Plugin::MinimumPerl",
+            "name" : "@Author::KENTNL/MinimumPerl",
+            "version" : "1.006"
          },
          {
             "class" : "Dist::Zilla::Plugin::Authority",
@@ -630,8 +627,13 @@
             "version" : "0.012"
          },
          {
-            "class" : "Dist::Zilla::Plugin::CheckExtraTests",
-            "name" : "@Author::KENTNL/CheckExtraTests",
+            "class" : "Dist::Zilla::Plugin::RunExtraTests",
+            "config" : {
+               "Dist::Zilla::Role::TestRunner" : {
+                  "default_jobs" : 1
+               }
+            },
+            "name" : "@Author::KENTNL/RunExtraTests",
             "version" : "0.029"
          },
          {
@@ -685,7 +687,7 @@
                   "time_zone" : "local"
                }
             },
-            "name" : "@Author::KENTNL/Git::Tag/tag_master",
+            "name" : "@Author::KENTNL/tag_master",
             "version" : "2.041"
          },
          {
@@ -752,7 +754,7 @@
                   "time_zone" : "local"
                }
             },
-            "name" : "@Author::KENTNL/Git::Tag/tag_release",
+            "name" : "@Author::KENTNL/tag_release",
             "version" : "2.041"
          },
          {

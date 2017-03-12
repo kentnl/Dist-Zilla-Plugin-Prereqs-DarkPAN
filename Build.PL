@@ -11,7 +11,8 @@ my %module_build_args = (
     "Module::Build" => "0.4220"
   },
   "configure_requires" => {
-    "Module::Build" => "0.4220"
+    "Module::Build" => "0.4220",
+    "perl" => "5.006"
   },
   "dist_abstract" => "Depend on things from arbitrary places-not-CPAN",
   "dist_author" => [
@@ -39,14 +40,16 @@ my %module_build_args = (
     "warnings" => 0
   },
   "test_requires" => {
-    "Test::More" => "1.302073"
+    "Test::More" => "1.302073",
+    "perl" => "5.006"
   }
 );
 
 
 my %fallback_build_requires = (
   "Module::Build" => "0.4220",
-  "Test::More" => "1.302073"
+  "Test::More" => "1.302073",
+  "perl" => "5.006"
 );
 
 
