@@ -1,16 +1,17 @@
 Release history for Dist-Zilla-Plugin-Prereqs-DarkPAN
 
-v0.3.0 2017-03-12T17:47:50Z b870b33
+v0.3.0 2017-03-12T17:48:11Z 4b1dbaf
  - Bugfix: Avoid test failures with -Ddefault_inc_excludes_dot ( by automatic plugin update )
  - Replace installer with EUMM ( could break some downstreams, primary reason for v0.3 )
  - Remove use of Class::Load
+ - Remove useless Moose::Autobox messing up dzil version load time.
 
  [Dependencies::Stats]
  - Dependencies changed since 0.2.4, see misc/*.deps* for details
  - build: -1
  - configure: +2 -1 (recommends: +1)
  - develop: +24 ↑3 -14 (recommends: +1, suggests: +2 -1)
- - runtime: +2 -1 (recommends: +1)
+ - runtime: +2 -2 (recommends: +1)
  - test: +3 ↓1 (recommends: +3)
 
 0.2.4 2013-11-22T09:51:44Z

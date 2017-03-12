@@ -60,7 +60,6 @@
       "File::Spec" : "3.66",
       "Module::Runtime" : "0.014",
       "Moose" : "2.2004",
-      "Moose::Autobox" : "0.16",
       "Moose::Role" : "2.2004",
       "Parse::CPAN::Packages" : "2.40",
       "Path::ScanINC" : "1.000003",

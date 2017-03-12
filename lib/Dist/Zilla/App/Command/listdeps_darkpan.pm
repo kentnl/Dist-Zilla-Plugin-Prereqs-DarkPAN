@@ -13,7 +13,6 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 # ABSTRACT: List DarkPAN dependencies
 
 use Dist::Zilla::App '-command';
-use Moose::Autobox;
 
 
 
@@ -41,18 +40,18 @@ sub opt_spec {
 
 sub _extract_dependencies {
   my ( undef, $zilla, $missing ) = @_;
-  $_->before_build     for $zilla->plugins_with('-BeforeBuild')->flatten;
-  $_->gather_files     for $zilla->plugins_with('-FileGatherer')->flatten;
-  $_->prune_files      for $zilla->plugins_with('-FilePruner')->flatten;
-  $_->munge_files      for $zilla->plugins_with('-FileMunger')->flatten;
-  $_->register_prereqs for $zilla->plugins_with('-PrereqSource')->flatten;
+  $_->before_build     for @{ $zilla->plugins_with('-BeforeBuild') };
+  $_->gather_files     for @{ $zilla->plugins_with('-FileGatherer') };
+  $_->prune_files      for @{ $zilla->plugins_with('-FilePruner') };
+  $_->munge_files      for @{ $zilla->plugins_with('-FileMunger') };
+  $_->register_prereqs for @{ $zilla->plugins_with('-PrereqSource') };
   my @dark;
   my $callback = sub {
     shift @_ if 'HASH' eq ref $_[0];
     push @dark, @_;
   };
 
-  $_->register_external_prereqs($callback) for $zilla->plugins_with('-PrereqSource::External')->flatten;
+  $_->register_external_prereqs($callback) for @{ $zilla->plugins_with('-PrereqSource::External') };
 
   if ($missing) {
     @dark = grep { not $_->is_satisfied } @dark;
