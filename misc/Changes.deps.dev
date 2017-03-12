@@ -2,6 +2,7 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
 
 0.2.5
  [Added / develop requires]
+ - Dist::Zilla::Plugin::Git::Contributors 0.006
  - Dist::Zilla::Plugin::Git::NextRelease
  - Dist::Zilla::Plugin::Git::NextVersion::Sanitized
  - Dist::Zilla::Plugin::MinimumPerl
