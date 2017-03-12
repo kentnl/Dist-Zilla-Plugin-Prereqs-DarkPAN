@@ -13,6 +13,8 @@ copyright_holder = Kent Fredric <kentnl@cpan.org>
 bumpversions      = 1
 normal_form       = normal
 copyfiles         = LICENSE
+toolkit           = eumm
+toolkit_hardness  = soft
 ; version_major     = 0
 ; version_minor     = 1
 ; the following data denotes when this minor was minted
