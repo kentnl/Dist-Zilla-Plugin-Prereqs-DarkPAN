@@ -28,8 +28,8 @@
       "develop" : {
          "requires" : {
             "Dist::Zilla" : "5",
-            "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.001001",
-            "Dist::Zilla::Plugin::Author::KENTNL::TravisCI" : "0",
+            "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.004002",
+            "Dist::Zilla::Plugin::Author::KENTNL::TravisCI" : "0.001002",
             "Dist::Zilla::Plugin::Authority" : "1.006",
             "Dist::Zilla::Plugin::AutoPrereqs" : "0",
             "Dist::Zilla::Plugin::ConfirmRelease" : "0",
@@ -50,7 +50,7 @@
             "Dist::Zilla::Plugin::MetaJSON" : "0",
             "Dist::Zilla::Plugin::MetaProvides::Package" : "1.14000001",
             "Dist::Zilla::Plugin::MetaTests" : "0",
-            "Dist::Zilla::Plugin::MetaYAML" : "0",
+            "Dist::Zilla::Plugin::MetaYAML::Minimal" : "0",
             "Dist::Zilla::Plugin::MinimumPerl" : "0",
             "Dist::Zilla::Plugin::ModuleBuild" : "0",
             "Dist::Zilla::Plugin::PkgVersion" : "0",
@@ -299,9 +299,15 @@
             "version" : "6.009"
          },
          {
-            "class" : "Dist::Zilla::Plugin::MetaYAML",
-            "name" : "@Author::KENTNL/MetaYAML",
-            "version" : "6.009"
+            "class" : "Dist::Zilla::Plugin::MetaYAML::Minimal",
+            "config" : {
+               "Dist::Zilla::Plugin::MetaYAML::Minimal" : {
+                  "filename" : "META.yml",
+                  "version" : "1.4"
+               }
+            },
+            "name" : "@Author::KENTNL/MetaYAML::Minimal",
+            "version" : "0.001001"
          },
          {
             "class" : "Dist::Zilla::Plugin::Manifest",
@@ -712,7 +718,7 @@
             "class" : "Dist::Zilla::Plugin::Git::CommitBuild",
             "config" : {
                "Dist::Zilla::Plugin::Git::CommitBuild" : {
-                  "branch" : "build/%b",
+                  "branch" : "builds",
                   "build_root" : null,
                   "message" : "Build results of %h (on %b)",
                   "multiple_inheritance" : 0,
