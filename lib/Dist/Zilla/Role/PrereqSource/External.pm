@@ -1,3 +1,4 @@
+use 5.006;    # our
 use strict;
 use warnings;
 
@@ -9,7 +10,7 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 # CREATED: 30/10/11 10:56:47 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: A plugin that depends on DarkPAN/External sources
 
-use Moose::Role;
+use Moose::Role qw( with requires );
 with 'Dist::Zilla::Role::Plugin';
 
 

@@ -19,11 +19,13 @@ lib/Dist/Zilla/ExternalPrereq.pm
 lib/Dist/Zilla/Plugin/Prereqs/DarkPAN.pm
 lib/Dist/Zilla/Role/PrereqSource/External.pm
 lib/Dist/Zilla/Role/xPANResolver.pm
+maint/perlcritic.rc.gen.pl
 misc/Changes.deps
 misc/Changes.deps.all
 misc/Changes.deps.dev
 misc/Changes.deps.opt
 misc/built_with.json
+misc/perlcritic.deps
 perlcritic.rc
 t/00-compile/lib_Dist_Zilla_App_Command_listdeps_darkpan_pm.t
 t/00-compile/lib_Dist_Zilla_ExternalPrereq_pm.t

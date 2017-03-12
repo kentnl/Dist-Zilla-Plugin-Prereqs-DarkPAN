@@ -1,3 +1,4 @@
+use 5.006;    # our
 use strict;
 use warnings;
 
@@ -7,7 +8,7 @@ $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.5';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
-use Moose;
+use Moose qw( with has );
 with 'Dist::Zilla::Role::PrereqSource::External';
 
 use namespace::autoclean;
@@ -122,15 +123,6 @@ has prereq_phase => (
   default  => 'runtime',
 );
 
-# init_arg => 'phase',
-# default  => sub {
-#    my ($self) = @_;
-#    my ($phase, $type) = $self->__from_name;
-#    $phase ||= 'runtime';
-#    $phase = lc $phase;
-#    return $phase;
-# },
-
 has prereq_type => (
   is       => 'ro',
   isa      => 'Str',
@@ -144,7 +136,7 @@ has prereq_type => (
 has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
 
 sub _add_dep {
-  my ( $class, $stash, $args ) = @_;
+  my ( undef, $stash, $args ) = @_;
   $stash->{deps} = {} unless exists $stash->{deps};
   my $ds     = $stash->{deps};
   my $logger = $stash->{logger};
@@ -163,7 +155,7 @@ sub _add_dep {
 }
 
 sub _add_attribute {
-  my ( $class, $stash, $args ) = @_;
+  my ( undef, $stash, $args ) = @_;
 
   $stash->{attributes} = {} unless exists $stash->{attributes};
 
@@ -210,8 +202,8 @@ sub _collect_data {
       {
         key       => $key_name,
         attribute => $key_attribute,
-        value     => $value
-      }
+        value     => $value,
+      },
     );
   }
 
@@ -257,7 +249,7 @@ sub BUILDARGS {
       zilla       => $zilla,
       baseurl     => $deps->{$dep},
 
-      %{$edep}
+      %{$edep},
     );
     $_deps->{$dep} = $instance;
   }
@@ -265,7 +257,7 @@ sub BUILDARGS {
     zilla       => $zilla,
     plugin_name => $name,
     _deps       => $_deps,
-    logger      => $logger
+    logger      => $logger,
   };
 
 }
@@ -283,7 +275,7 @@ sub register_external_prereqs {
     $registersub->(
       {
         type  => $self->prereq_type,
-        phase => $self->prereq_phase
+        phase => $self->prereq_phase,
       },
       $self->_deps->{$dep},
     );
