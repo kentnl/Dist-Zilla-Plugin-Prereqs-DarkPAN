@@ -59,6 +59,7 @@ x_BuiltWith:
     App::Cache: '0.37'
     CPAN::Meta: '2.150010'
     Class::Load: '0.23'
+    Dist::Zilla: '6.009'
     Dist::Zilla::App: '6.009'
     Dist::Zilla::App::Command::bakeini: '0.002006'
     Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.005004'
@@ -91,6 +92,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::PodSyntaxTests: '6.009'
     Dist::Zilla::Plugin::PodWeaver: '4.008'
     Dist::Zilla::Plugin::Prereqs: '6.009'
+    Dist::Zilla::Plugin::Prereqs::AuthorDeps: '0.006'
     Dist::Zilla::Plugin::Prereqs::MatchInstalled: '1.001002'
     Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled: '0.003002'
     Dist::Zilla::Plugin::ReadmeAnyFromPod: '0.163250'
@@ -116,6 +118,7 @@ x_BuiltWith:
     Moose::Role: '2.2004'
     Parse::CPAN::Packages: '2.40'
     Pod::Coverage::TrustPod: '0.100003'
+    Software::License::Perl_5: '0.103012'
     Test::CPAN::Changes: '0.400002'
     Test::CPAN::Meta: '0.25'
     Test::EOL: '1.6'
@@ -419,6 +422,10 @@ x_Dist_Zilla:
           type: suggests
       name: '@Author::KENTNL/BundleDevelSuggests'
       version: '6.009'
+    -
+      class: Dist::Zilla::Plugin::Prereqs::AuthorDeps
+      name: '@Author::KENTNL/Prereqs::AuthorDeps'
+      version: '0.006'
     -
       class: Dist::Zilla::Plugin::MinimumPerl
       name: '@Author::KENTNL/MinimumPerl'
