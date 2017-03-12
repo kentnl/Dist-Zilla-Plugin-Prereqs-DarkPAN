@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Role::PrereqSource::External;
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
@@ -53,7 +53,7 @@ Dist::Zilla::Role::PrereqSource::External - A plugin that depends on DarkPAN/Ext
 
 =head1 VERSION
 
-version v0.3.0
+version v0.3.1
 
 =begin MetaPOD::JSON v1.1.0
 

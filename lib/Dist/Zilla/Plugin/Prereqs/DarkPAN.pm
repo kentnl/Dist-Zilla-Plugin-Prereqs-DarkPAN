@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::DarkPAN;
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
 
@@ -227,7 +227,7 @@ Dist::Zilla::Plugin::Prereqs::DarkPAN - Depend on things from arbitrary places-n
 
 =head1 VERSION
 
-version v0.3.0
+version v0.3.1
 
 =head1 SYNOPSIS
 

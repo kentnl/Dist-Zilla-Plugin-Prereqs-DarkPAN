@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Role::xPANResolver;
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
@@ -107,7 +107,7 @@ Dist::Zilla::Role::xPANResolver - Tools to resolve a package to a URI from a CPA
 
 =head1 VERSION
 
-version v0.3.0
+version v0.3.1
 
 =head1 METHODS
 

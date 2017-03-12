@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::ExternalPrereq;
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
@@ -120,7 +120,7 @@ Dist::Zilla::ExternalPrereq - A representation of an externalised prerequisite
 
 =head1 VERSION
 
-version v0.3.0
+version v0.3.1
 
 =head1 METHODS
 

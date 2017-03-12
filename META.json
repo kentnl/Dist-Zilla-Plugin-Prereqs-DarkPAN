@@ -133,23 +133,23 @@
    "provides" : {
       "Dist::Zilla::App::Command::listdeps_darkpan" : {
          "file" : "lib/Dist/Zilla/App/Command/listdeps_darkpan.pm",
-         "version" : "v0.3.0"
+         "version" : "v0.3.1"
       },
       "Dist::Zilla::ExternalPrereq" : {
          "file" : "lib/Dist/Zilla/ExternalPrereq.pm",
-         "version" : "v0.3.0"
+         "version" : "v0.3.1"
       },
       "Dist::Zilla::Plugin::Prereqs::DarkPAN" : {
          "file" : "lib/Dist/Zilla/Plugin/Prereqs/DarkPAN.pm",
-         "version" : "v0.3.0"
+         "version" : "v0.3.1"
       },
       "Dist::Zilla::Role::PrereqSource::External" : {
          "file" : "lib/Dist/Zilla/Role/PrereqSource/External.pm",
-         "version" : "v0.3.0"
+         "version" : "v0.3.1"
       },
       "Dist::Zilla::Role::xPANResolver" : {
          "file" : "lib/Dist/Zilla/Role/xPANResolver.pm",
-         "version" : "v0.3.0"
+         "version" : "v0.3.1"
       }
    },
    "release_status" : "stable",
@@ -164,7 +164,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-DarkPAN"
       }
    },
-   "version" : "v0.3.0",
+   "version" : "v0.3.1",
    "x_BuiltWith" : {
       "external_file" : "misc/built_with.json"
    },
@@ -672,7 +672,7 @@
                   "branch" : null,
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "v0.3.0-source",
+                  "tag" : "v0.3.1-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v"
                },
@@ -766,7 +766,7 @@
                   "branch" : "releases",
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "v0.3.0",
+                  "tag" : "v0.3.1",
                   "tag_format" : "%v",
                   "tag_message" : "v%v"
                },

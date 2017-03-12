@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::App::Command::listdeps_darkpan;
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
@@ -86,7 +86,7 @@ Dist::Zilla::App::Command::listdeps_darkpan - List DarkPAN dependencies
 
 =head1 VERSION
 
-version v0.3.0
+version v0.3.1
 
 =head1 SYNOPSIS
 
