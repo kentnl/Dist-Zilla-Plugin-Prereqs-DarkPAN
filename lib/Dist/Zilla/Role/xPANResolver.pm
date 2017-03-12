@@ -24,6 +24,7 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 
 use Moose::Role;
+no Moose::Role;
 
 my $c;
 
@@ -96,8 +97,6 @@ sub resolve_module {
   my $modpath = URI->new( $d->prefix )->abs($modroot);
   return $modpath->as_string;
 }
-
-no Moose::Role;
 
 1;
 
