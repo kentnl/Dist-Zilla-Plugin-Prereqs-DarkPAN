@@ -12,6 +12,7 @@ copyright_holder = Kent Fredric <kentnl@cpan.org>
 :version          = 1.4.1
 git_versions      = 1
 normal_form       = normal_3
+copyfiles         = LICENSE
 ; version_major     = 0
 ; version_minor     = 1
 ; the following data denotes when this minor was minted
