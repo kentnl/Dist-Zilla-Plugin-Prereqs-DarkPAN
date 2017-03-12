@@ -3,6 +3,8 @@ use warnings;
 
 package Dist::Zilla::ExternalPrereq;
 
+# AUTHORITY
+
 # FILENAME: ExternalPrereq.pm
 # CREATED: 30/10/11 10:07:40 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: A representation of an externalised prerequisite

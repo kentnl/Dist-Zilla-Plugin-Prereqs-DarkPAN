@@ -3,6 +3,8 @@ use warnings;
 
 package Dist::Zilla::Role::PrereqSource::External;
 
+# AUTHORITY
+
 # FILENAME: External.pm
 # CREATED: 30/10/11 10:56:47 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: A plugin that depends on DarkPAN/External sources

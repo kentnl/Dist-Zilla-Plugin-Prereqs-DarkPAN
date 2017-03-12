@@ -5,6 +5,8 @@ package Dist::Zilla::Plugin::Prereqs::DarkPAN;
 
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
 
+# AUTHORITY
+
 use Moose;
 with 'Dist::Zilla::Role::PrereqSource::External';
 

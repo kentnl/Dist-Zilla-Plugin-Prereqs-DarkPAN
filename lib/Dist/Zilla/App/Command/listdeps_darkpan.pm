@@ -3,6 +3,8 @@ use warnings;
 
 package Dist::Zilla::App::Command::listdeps_darkpan;
 
+# AUTHORITY
+
 # FILENAME: listdeps_darkpan.pm
 # CREATED: 30/10/11 11:07:09 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: List DarkPAN dependencies
