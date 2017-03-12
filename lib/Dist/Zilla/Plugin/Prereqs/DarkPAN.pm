@@ -4,6 +4,8 @@ use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::DarkPAN;
 
+our $VERSION = 'v0.3.0';
+
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
 
 # AUTHORITY

@@ -10,8 +10,8 @@ copyright_holder = Kent Fredric <kentnl@cpan.org>
 
 [@Author::KENTNL]
 :version          = 1.4.1
-git_versions      = 1
-normal_form       = normal_3
+bumpversions      = 1
+normal_form       = normal
 copyfiles         = LICENSE
 ; version_major     = 0
 ; version_minor     = 1

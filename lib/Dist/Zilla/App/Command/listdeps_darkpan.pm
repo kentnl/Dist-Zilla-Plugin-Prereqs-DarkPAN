@@ -4,6 +4,8 @@ use warnings;
 
 package Dist::Zilla::App::Command::listdeps_darkpan;
 
+our $VERSION = 'v0.3.0';
+
 # AUTHORITY
 
 # FILENAME: listdeps_darkpan.pm

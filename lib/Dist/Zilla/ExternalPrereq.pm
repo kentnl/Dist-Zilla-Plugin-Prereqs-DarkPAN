@@ -4,6 +4,8 @@ use warnings;
 
 package Dist::Zilla::ExternalPrereq;
 
+our $VERSION = 'v0.3.0';
+
 # AUTHORITY
 
 # FILENAME: ExternalPrereq.pm
