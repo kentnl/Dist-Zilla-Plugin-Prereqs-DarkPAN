@@ -1,42 +1,57 @@
+use 5.006;    # our
 use strict;
 use warnings;
 
 package Dist::Zilla::App::Command::listdeps_darkpan;
-BEGIN {
-  $Dist::Zilla::App::Command::listdeps_darkpan::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::App::Command::listdeps_darkpan::VERSION = '0.2.4';
-}
+
+our $VERSION = 'v0.3.0';
+
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 # FILENAME: listdeps_darkpan.pm
 # CREATED: 30/10/11 11:07:09 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: List DarkPAN dependencies
 
-use Dist::Zilla::App -command;
-use Moose::Autobox;
+use Dist::Zilla::App '-command';
 
 
-sub abstract { return 'list your distributions prerequisites from darkpans' }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sub abstract { return 'list your distributions prerequisites from darkpans' }    ## no critic (ProhibitAmbiguousNames)
 
 sub opt_spec {
   return [ 'missing', 'list only the missing dependencies' ],;
 }
 
 sub _extract_dependencies {
-  my ( $self, $zilla, $missing ) = @_;
-  $_->before_build     for $zilla->plugins_with( -BeforeBuild )->flatten;
-  $_->gather_files     for $zilla->plugins_with( -FileGatherer )->flatten;
-  $_->prune_files      for $zilla->plugins_with( -FilePruner )->flatten;
-  $_->munge_files      for $zilla->plugins_with( -FileMunger )->flatten;
-  $_->register_prereqs for $zilla->plugins_with( -PrereqSource )->flatten;
+  my ( undef, $zilla, $missing ) = @_;
+  $_->before_build     for @{ $zilla->plugins_with('-BeforeBuild') };
+  $_->gather_files     for @{ $zilla->plugins_with('-FileGatherer') };
+  $_->prune_files      for @{ $zilla->plugins_with('-FilePruner') };
+  $_->munge_files      for @{ $zilla->plugins_with('-FileMunger') };
+  $_->register_prereqs for @{ $zilla->plugins_with('-PrereqSource') };
   my @dark;
   my $callback = sub {
-    shift @_ if ref $_[0] eq 'HASH';
+    shift @_ if 'HASH' eq ref $_[0];
     push @dark, @_;
   };
 
-  $_->register_external_prereqs($callback) for $zilla->plugins_with('-PrereqSource::External')->flatten;
+  $_->register_external_prereqs($callback) for @{ $zilla->plugins_with('-PrereqSource::External') };
 
   if ($missing) {
     @dark = grep { not $_->is_satisfied } @dark;
@@ -46,7 +61,7 @@ sub _extract_dependencies {
 }
 
 sub execute {
-  my ( $self, $opt, $arg ) = @_;
+  my ( $self, $opt, ) = @_;
   my $logger = $self->app->chrome->logger;
   $logger->mute;
   for ( $self->_extract_dependencies( $self->zilla, $opt->missing, ) ) {
@@ -71,7 +86,7 @@ Dist::Zilla::App::Command::listdeps_darkpan - List DarkPAN dependencies
 
 =head1 VERSION
 
-version 0.2.4
+version v0.3.0
 
 =head1 SYNOPSIS
 
@@ -95,7 +110,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2017 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

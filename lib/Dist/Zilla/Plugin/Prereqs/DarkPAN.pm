@@ -1,20 +1,31 @@
+use 5.006;    # our
 use strict;
 use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::DarkPAN;
-BEGIN {
-  $Dist::Zilla::Plugin::Prereqs::DarkPAN::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::Plugin::Prereqs::DarkPAN::VERSION = '0.2.4';
-}
+
+our $VERSION = 'v0.3.0';
 
 # ABSTRACT: Depend on things from arbitrary places-not-CPAN
 
-use Moose;
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
+
+use Moose qw( with has around );
 with 'Dist::Zilla::Role::PrereqSource::External';
 
 use namespace::autoclean;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 has prereq_phase => (
@@ -24,15 +35,6 @@ has prereq_phase => (
   init_arg => undef,
   default  => 'runtime',
 );
-
-# init_arg => 'phase',
-# default  => sub {
-#    my ($self) = @_;
-#    my ($phase, $type) = $self->__from_name;
-#    $phase ||= 'runtime';
-#    $phase = lc $phase;
-#    return $phase;
-# },
 
 has prereq_type => (
   is       => 'ro',
@@ -44,10 +46,28 @@ has prereq_type => (
 
 # For full phase control, use above commented code.
 
-has _deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
+has _deps     => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
+has _raw_deps => ( is => 'ro', isa => 'HashRef', default => sub { {} }, );
+
+around 'dump_config' => sub {
+  my ( $orig, $self, @args ) = @_;
+  my $config = $self->$orig(@args);
+  my $localconf = $config->{ +__PACKAGE__ } = {};
+
+  $localconf->{prereq_phase} = $self->prereq_phase;
+  $localconf->{prereq_type}  = $self->prereq_type;
+  $localconf->{_raw_deps}    = $self->_raw_deps;
+
+  $localconf->{ q[$] . __PACKAGE__ . q[::VERSION] } = $VERSION
+    unless __PACKAGE__ eq ref $self;
+  return $config;
+};
+
+__PACKAGE__->meta->make_immutable;
+no Moose;
 
 sub _add_dep {
-  my ( $class, $stash, $args ) = @_;
+  my ( undef, $stash, $args ) = @_;
   $stash->{deps} = {} unless exists $stash->{deps};
   my $ds     = $stash->{deps};
   my $logger = $stash->{logger};
@@ -66,7 +86,7 @@ sub _add_dep {
 }
 
 sub _add_attribute {
-  my ( $class, $stash, $args ) = @_;
+  my ( undef, $stash, $args ) = @_;
 
   $stash->{attributes} = {} unless exists $stash->{attributes};
 
@@ -113,8 +133,8 @@ sub _collect_data {
       {
         key       => $key_name,
         attribute => $key_attribute,
-        value     => $value
-      }
+        value     => $value,
+      },
     );
   }
 
@@ -160,7 +180,7 @@ sub BUILDARGS {
       zilla       => $zilla,
       baseurl     => $deps->{$dep},
 
-      %{$edep}
+      %{$edep},
     );
     $_deps->{$dep} = $instance;
   }
@@ -168,10 +188,14 @@ sub BUILDARGS {
     zilla       => $zilla,
     plugin_name => $name,
     _deps       => $_deps,
-    logger      => $logger
+    _raw_deps   => $deps,
+    logger      => $logger,
   };
 
 }
+
+
+
 
 
 sub register_external_prereqs {
@@ -181,16 +205,13 @@ sub register_external_prereqs {
     $registersub->(
       {
         type  => $self->prereq_type,
-        phase => $self->prereq_phase
+        phase => $self->prereq_phase,
       },
       $self->_deps->{$dep},
     );
   }
   return;
 }
-
-__PACKAGE__->meta->make_immutable;
-no Moose;
 
 1;
 
@@ -206,7 +227,7 @@ Dist::Zilla::Plugin::Prereqs::DarkPAN - Depend on things from arbitrary places-n
 
 =head1 VERSION
 
-version 0.2.4
+version v0.3.0
 
 =head1 SYNOPSIS
 
@@ -222,8 +243,8 @@ it anyway.
   ; But likely to be substantially faster.
   DDG.uri = /path/to/foo/bar.tar.gz
 
-This would provide to various user commands the knowledge that DDG.tar.gz was
-wanted to provide the package DDG.
+This would provide to various user commands the knowledge that C<DDG.tar.gz> was
+wanted to provide the package C<DDG>.
 
 Our hope is one day you can just do
 
@@ -260,6 +281,8 @@ and have it work.
 
 =end MetaPOD::JSON
 
+=for Pod::Coverage register_external_prereqs
+
 =head1 DarkPAN Configurations.
 
 =head2 A Simple HTTP Server
@@ -277,9 +300,9 @@ make sure they haven't installed an older version of Foo.
 This C<uri> will be reported to listdeps_darkpan with minimal modification, only
 expanding relative paths to absolute ones so tools like C<cpanm> can use them.
 
-=head2 A MicroCPAN Configuration
+=head2 A C<MicroCPAN> Configuration
 
-There is a newly formed system for creating "proper" cpans which only contain a
+There is a newly formed system for creating "proper" CPANs which only contain a
 handful of modules. For these services you can simply do
 
   [Prereqs::DarkPAN]
@@ -292,9 +315,9 @@ file, shred it, and try installing 'Foo' from there.
 
 The 3rd use case is when you have somewhat heavy-weight private CPANs where you
 don't want to be encumbered by the weight of downloading and parsing
-C<02packages.details.tar.gz>. If you have a full cpan clone with a few modules
+C<02packages.details.tar.gz>. If you have a full CPAN clone with a few modules
 stuffed into it, and you only want those stuffed modules while using normal CPAN
-( because the cloned versions from cpan are now old ), its possibly better to
+( because the cloned versions from CPAN are now old ), its possibly better to
 use the original notation
 
   [Prereqs::DarkPAN]
@@ -307,15 +330,13 @@ C<02packages.details.tar.gz>
 Granted, this latter approach will bind again to downloading a specific version
 of the prerequisite, but this is still here for you if you need it.
 
-=for Pod::Coverage   register_external_prereqs
-
 =head1 AUTHOR
 
 Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2017 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

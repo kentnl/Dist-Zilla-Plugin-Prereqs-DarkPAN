@@ -1,20 +1,44 @@
+use 5.006;    # our
 use strict;
 use warnings;
 
 package Dist::Zilla::Role::xPANResolver;
-BEGIN {
-  $Dist::Zilla::Role::xPANResolver::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::Role::xPANResolver::VERSION = '0.2.4';
-}
+
+our $VERSION = 'v0.3.0';
+
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 # FILENAME: xPANResolver.pm
 # CREATED: 30/10/11 14:05:14 by Kent Fredric (kentnl) <kentfredric@gmail.com>
-# ABSTRACT: Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.
+# ABSTRACT: Tools to resolve a package to a URI from a CPAN/DARKPAN mirror.
 
 
-use Moose::Role;
+
+
+
+
+
+
+
+
+
+
+use Moose::Role qw( around );
+
+around dump_config => sub {
+  my ( $orig, $self, @args ) = @_;
+  my $config = $self->$orig(@args);
+  my $payload = $config->{ +__PACKAGE__ } = {};
+
+  ## no critic (RequireInterpolationOfMetachars)
+  $payload->{ q[$] . __PACKAGE__ . q[::VERSION] } = $VERSION;
+  $payload->{q[$App::Cache::VERSION]}            = $App::Cache::VERSION            if $INC{'App/Cache.pm'};
+  $payload->{q[$Parse::CPAN::Packages::VERSION]} = $Parse::CPAN::Packages::VERSION if $INC{'Parse/CPAN/Packages.pm'};
+  $payload->{q[$URI::VERSION]}                   = $URI::VERSION                   if $INC{'URI.pm'};
+  return $config;
+};
+
+no Moose::Role;
 
 my $c;
 
@@ -27,14 +51,14 @@ sub _cache {
       {
         ttl         => 30 * 60,
         application => __PACKAGE__,
-      }
+      },
     );
   };
   return $c;
 }
 
 sub _content_for {
-  my ( $self, $url ) = @_;
+  my ( undef, $url ) = @_;
   return _cache->get_url($url);
 }
 
@@ -47,19 +71,17 @@ sub _parse_for {
     sub {
       my $content = $self->_content_for($url);
       return Parse::CPAN::Packages->new($content);
-    }
+    },
   );
 }
 
 sub _resolver_for {
   my ( $self, $baseurl ) = @_;
   require URI;
-  my $path    = URI->new('modules/02packages.details.txt.gz');
-  my $baseuri = URI->new($baseurl);
-  my $absurl  = $path->abs($baseurl)->as_string;
+  my $path   = URI->new('modules/02packages.details.txt.gz');
+  my $absurl = $path->abs($baseurl)->as_string;
   return $self->_parse_for($absurl);
 }
-
 
 sub resolve_module {
   my ( $self, $baseurl, $module ) = @_;
@@ -71,8 +93,6 @@ sub resolve_module {
   return $modpath->as_string;
 }
 
-no Moose::Role;
-
 1;
 
 __END__
@@ -83,11 +103,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Role::xPANResolver - Tools to resolve a package to a C<URI> from a CPAN/DARKPAN mirror.
+Dist::Zilla::Role::xPANResolver - Tools to resolve a package to a URI from a CPAN/DARKPAN mirror.
 
 =head1 VERSION
 
-version 0.2.4
+version v0.3.0
 
 =head1 METHODS
 
@@ -124,7 +144,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2017 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

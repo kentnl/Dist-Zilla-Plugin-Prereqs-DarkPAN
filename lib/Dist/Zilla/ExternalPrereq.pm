@@ -1,23 +1,35 @@
+use 5.006;    # our
 use strict;
 use warnings;
 
 package Dist::Zilla::ExternalPrereq;
-BEGIN {
-  $Dist::Zilla::ExternalPrereq::AUTHORITY = 'cpan:KENTNL';
-}
-{
-  $Dist::Zilla::ExternalPrereq::VERSION = '0.2.4';
-}
+
+our $VERSION = 'v0.3.0';
+
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 # FILENAME: ExternalPrereq.pm
 # CREATED: 30/10/11 10:07:40 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: A representation of an externalised prerequisite
 
 
-use Moose;
+
+
+
+
+
+
+
+
+
+
+
+
+use Moose qw( with has );
 with 'Dist::Zilla::Role::Plugin', 'Dist::Zilla::Role::xPANResolver';
-use Class::Load;
-use Try::Tiny;
+use Module::Runtime qw( require_module );
+use Try::Tiny qw( try catch );
+use Path::ScanINC;
 
 has 'name'    => ( isa => 'Str', required => 1, is => 'rw' );
 has 'baseurl' => ( isa => 'Str', required => 1, is => 'rw' );
@@ -43,11 +55,28 @@ has 'minversion' => (
   predicate => 'has_minversion',
 );
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
+
+
+
+
+
+
+
 
 sub is_satisfied {
   my ($self) = shift;
-  my $opts = {};
-  return   unless Class::Load::load_optional_class( $self->name, );
+  # Fence the Perl logic first to see if require is going to load a file
+  my (@pmname) = split qr/::|'/xs, $self->name;
+  $pmname[-1] .= '.pm';
+
+  return unless $INC{ join q{/}, @pmname } or defined Path::ScanINC->new()->first_file(@pmname);
+
+  # If Perl would load the file, do so, and propagate failures.
+  require_module( $self->name );
+
   return 1 unless $self->has_minversion;
   my $satisfied = 1;
   try {
@@ -76,8 +105,7 @@ sub _build_uri {
   return $self->resolve_module( $self->baseurl, $self->name );
 
 }
-no Moose;
-__PACKAGE__->meta->make_immutable;
+
 1;
 
 __END__
@@ -92,7 +120,7 @@ Dist::Zilla::ExternalPrereq - A representation of an externalised prerequisite
 
 =head1 VERSION
 
-version 0.2.4
+version v0.3.0
 
 =head1 METHODS
 
@@ -120,7 +148,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Kent Fredric <kentnl@cpan.org>.
+This software is copyright (c) 2017 by Kent Fredric <kentnl@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
