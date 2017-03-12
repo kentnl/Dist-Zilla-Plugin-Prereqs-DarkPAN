@@ -9,12 +9,18 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::Plugin::Git::NextVersion::Sanitized
  - Dist::Zilla::Plugin::MinimumPerl
  - Dist::Zilla::Plugin::RunExtraTests
+ - Dist::Zilla::Plugin::Test::ReportPrereqs
  - English
  - Test::EOL
  - Test::MinimumVersion
  - Test::More 1.302073
 
+ [Added / test recommends]
+ - CPAN::Meta 2.120900
+
  [Added / test requires]
+ - ExtUtils::MakeMaker
+ - File::Spec
  - perl 5.006
 
  [Changed / build requires]
@@ -36,6 +42,8 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::Plugin::Git::NextVersion
  - Dist::Zilla::Plugin::NextRelease
  - Dist::Zilla::Plugin::PruneCruft
+ - Dist::Zilla::Plugin::ReportVersions::Tiny
+ - version 0.9901
 
 0.2.4 2013-11-22T09:51:44Z
  [Changed / build requires]
