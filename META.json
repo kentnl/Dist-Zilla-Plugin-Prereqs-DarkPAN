@@ -27,6 +27,7 @@
       },
       "develop" : {
          "requires" : {
+            "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.001001",
             "Dist::Zilla::Plugin::Authority" : "1.006",
             "Dist::Zilla::Plugin::AutoPrereqs" : "0",
             "Dist::Zilla::Plugin::ConfirmRelease" : "0",
@@ -158,6 +159,7 @@
          "Class::Load" : "0.23",
          "Dist::Zilla::App" : "6.009",
          "Dist::Zilla::App::Command::bakeini" : "0.002006",
+         "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.005004",
          "Dist::Zilla::Plugin::Authority" : "1.009",
          "Dist::Zilla::Plugin::AutoPrereqs" : "6.009",
          "Dist::Zilla::Plugin::ConfirmRelease" : "6.009",
@@ -617,6 +619,11 @@
             },
             "name" : "@Author::KENTNL/ModuleBuild",
             "version" : "6.009"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes",
+            "name" : "@Author::KENTNL/Author::KENTNL::RecommendFixes",
+            "version" : "0.005004"
          },
          {
             "class" : "Dist::Zilla::Plugin::ReadmeFromPod",
