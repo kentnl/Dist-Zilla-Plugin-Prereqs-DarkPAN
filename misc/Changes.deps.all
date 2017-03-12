@@ -56,6 +56,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Added / test requires]
  - ExtUtils::MakeMaker
  - File::Spec
+ - Test::DZil
  - perl 5.006
 
  [Changed / develop requires]

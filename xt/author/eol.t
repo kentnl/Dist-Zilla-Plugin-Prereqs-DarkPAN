@@ -18,7 +18,8 @@ my @files = (
     't/00-compile/lib_Dist_Zilla_Role_PrereqSource_External_pm.t',
     't/00-compile/lib_Dist_Zilla_Role_xPANResolver_pm.t',
     't/00-report-prereqs.dd',
-    't/00-report-prereqs.t'
+    't/00-report-prereqs.t',
+    't/01-basic.t'
 );
 
 eol_unix_ok($_, { trailing_whitespace => 1 }) foreach @files;

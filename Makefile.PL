@@ -34,6 +34,7 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
+    "Test::DZil" => 0,
     "Test::More" => 0
   },
   "VERSION" => "v0.3.0",
@@ -54,6 +55,7 @@ my %FallbackPrereqs = (
   "Moose::Role" => 0,
   "Parse::CPAN::Packages" => 0,
   "Path::ScanINC" => 0,
+  "Test::DZil" => 0,
   "Test::More" => 0,
   "Try::Tiny" => 0,
   "URI" => 0,
